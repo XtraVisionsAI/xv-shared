@@ -73,10 +73,12 @@
   "devDependencies": {
     "@types/eslint": "catalog:",
     "@types/eslint-config-prettier": "catalog:",
+    "@types/node": "catalog:",
     "eslint": "catalog:",
     "eslint-typegen": "catalog:",
     "esno": "catalog:",
     "prettier": "catalog:",
-    "tsup": "catalog:"
+    "tsup": "catalog:",
+    "typescript": "catalog:"
   }
 }
