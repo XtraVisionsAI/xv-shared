@@ -15,3 +15,27 @@ catalog:
   "stylelint-scss": "^6.11.1"
   "postcss-html": "^1.7.0"
   "postcss-scss": "^4.0.9"
+  # build tools
+  "typescript": "^5.8.2"
+  "tsup": "^8.4.0"
+  "rimraf": "^6.0.1"
+  # vite & plugins
+  "vite": "^6.2.1"
+  "@vitejs/plugin-vue": "^5.0.4"
+  "@vitejs/plugin-vue-jsx": "^4.1.1"
+  "vite-plugin-html": "^3.2.0"
+  "vite-plugin-top-level-await": "^1.5.0"
+  "vite-plugin-vue-meta-layouts": "^0.5.1"
+  "vite-plugin-vue-setup-extend": "^0.4.0"
+  # unplugin ecosystem
+  "unplugin-auto-import": "^19.1.1"
+  "unplugin-icons": "^22.1.0"
+  "unplugin-vue-components": "^28.4.1"
+  "unplugin-vue-router": "^0.12.0"
+  # unocss
+  "unocss": "^66.1.0-beta.3"
+  "@unocss/transformer-directives": "^66.1.0-beta.3"
+  "@unocss/transformer-variant-group": "^66.1.0-beta.3"
+  # utilities
+  "lodash-es": "^4.17.21"
+  "rollup-plugin-visualizer": "^5.14.0"

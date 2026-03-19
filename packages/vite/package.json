@@ -1,0 +1,46 @@
+{
+  "name": "@xv-shared/vite",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "shared vite configuration and plugins",
+  "author": "XtraVisions",
+  "license": "EULA",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "vite": ">=5.0.0"
+  },
+  "dependencies": {
+    "@unocss/transformer-directives": "catalog:",
+    "@unocss/transformer-variant-group": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
+    "lodash-es": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "unocss": "catalog:",
+    "unplugin-auto-import": "catalog:",
+    "unplugin-icons": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "unplugin-vue-router": "catalog:",
+    "vite-plugin-html": "catalog:",
+    "vite-plugin-top-level-await": "catalog:",
+    "vite-plugin-vue-meta-layouts": "catalog:",
+    "vite-plugin-vue-setup-extend": "catalog:"
+  },
+  "devDependencies": {
+    "@xv-shared/types": "workspace:*",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}
