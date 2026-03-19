@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "node config",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "sourceMap": true
+  }
+}

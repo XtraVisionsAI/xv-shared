@@ -1,0 +1,24 @@
+{
+  "name": "@xv-shared/stylelint-config",
+  "version": "1.0.0",
+  "description": "shared config for stylelint",
+  "license": "EULA",
+  "main": "config/base.json",
+  "files": [
+    "config"
+  ],
+  "dependencies": {
+    "@stylistic/stylelint-config": "catalog:",
+    "stylelint": "catalog:",
+    "stylelint-config-property-sort-order-smacss": "catalog:",
+    "stylelint-config-recommended": "catalog:",
+    "stylelint-config-recommended-scss": "catalog:",
+    "stylelint-config-recommended-vue": "catalog:",
+    "stylelint-order": "catalog:",
+    "stylelint-prettier": "catalog:",
+    "stylelint-scss": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

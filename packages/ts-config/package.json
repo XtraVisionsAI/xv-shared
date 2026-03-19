@@ -1,0 +1,15 @@
+{
+  "name": "@xv-shared/ts-config",
+  "version": "1.0.0",
+  "description": "shared config for typescript",
+  "author": "XtraVisions",
+  "license": "EULA",
+  "files": [
+    "base.json",
+    "dev.json",
+    "node.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

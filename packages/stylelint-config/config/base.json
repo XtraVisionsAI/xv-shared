@@ -1,0 +1,90 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-property-sort-order-smacss",
+    "@stylistic/stylelint-config"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss", "stylelint-prettier"],
+  "overrides": [
+    { "files": ["**/*.(css|html|vue)"], "customSyntax": "postcss-html" },
+    {
+      "files": ["*.scss", "**/*.scss"],
+      "customSyntax": "postcss-scss",
+      "extends": ["stylelint-config-recommended-scss", "stylelint-config-recommended-vue/scss"],
+      "rule": { "scss/percent-placeholder-pattern": null }
+    }
+  ],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "apply",
+          "variants",
+          "responsive",
+          "screen",
+          "function",
+          "if",
+          "each",
+          "include",
+          "mixin",
+          "extend",
+          "use"
+        ]
+      }
+    ],
+
+    "at-rule-no-deprecated": [
+      true,
+      {
+        "ignoreAtRules": ["apply"]
+      }
+    ],
+
+    "custom-property-pattern": null,
+
+    "declaration-property-value-no-unknown": [
+      true,
+      {
+        "ignoreProperties": {
+          "/.+/": "/^v-bind/"
+        }
+      }
+    ],
+
+    "font-family-no-missing-generic-family-keyword": null,
+    "function-no-unknown": null,
+
+    "import-notation": null,
+
+    "named-grid-areas-no-invalid": null,
+
+    "no-descending-specificity": null,
+    "no-empty-source": null,
+
+    "order/order": [
+      [
+        "dollar-variables",
+        "custom-properties",
+        "at-rules",
+        "declarations",
+        { "type": "at-rule", "name": "supports" },
+        { "type": "at-rule", "name": "media" },
+        "rules"
+      ],
+      { "severity": "error" }
+    ],
+
+    "rule-empty-line-before": ["always", { "ignore": ["after-comment", "first-nested"] }],
+
+    "selector-not-notation": null,
+    "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "deep"] }],
+    "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["v-deep"] }],
+
+    "@stylistic/string-quotes": "single",
+
+    "unit-no-unknown": [true, { "ignoreUnits": ["rpx"] }]
+  },
+  "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.tsx", "**/*.ts"]
+}
