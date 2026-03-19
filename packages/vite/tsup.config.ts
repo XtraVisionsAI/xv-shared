@@ -6,5 +6,6 @@ export default defineConfig({
   dts: true,
   clean: true,
   shims: false,
-  external: ['vite']
+  external: ['vite'],
+  outExtension: () => ({ js: '.mjs' })
 })
