@@ -34,10 +34,10 @@ export function createVitePlugins(env: ViteEnv, mode: string, opt: PluginOptions
     })
   )
 
-  vitePlugins.push(configAutoImportPlugin(env, mode, opt.autoImport))
-  vitePlugins.push(configAutoComponentsPlugin(env, mode, opt.autoComponents))
+  vitePlugins.push(configAutoImportPlugin(env, mode, opt.autoImport) as unknown as Plugin)
+  vitePlugins.push(configAutoComponentsPlugin(env, mode, opt.autoComponents) as unknown as Plugin)
   vitePlugins.push(configAutoRouterPlugin(env, mode, opt.autoRouter))
-  vitePlugins.push(configAutoLayoutPlugin(env, mode, opt.autoLayout))
+  vitePlugins.push(configAutoLayoutPlugin(env, mode, opt.autoLayout) as unknown as Plugin)
   vitePlugins.push(...configHtmlPlugin(env, mode, opt.html))
   vitePlugins.push(...configUnoCSSPlugin(env, mode, opt.css))
   vitePlugins.push(configIconPlugin(env, mode, opt.icon))

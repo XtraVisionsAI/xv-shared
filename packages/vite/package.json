@@ -38,6 +38,8 @@
     "vite-plugin-vue-setup-extend": "catalog:"
   },
   "devDependencies": {
+    "@types/lodash-es": "catalog:",
+    "@types/node": "catalog:",
     "@xv-shared/types": "workspace:*",
     "tsup": "catalog:",
     "typescript": "catalog:",
