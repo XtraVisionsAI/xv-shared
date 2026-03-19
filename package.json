@@ -2,9 +2,10 @@
   "name": "@xv-shared/root",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@10.18.2",
   "engines": {
     "node": ">=18",
-    "pnpm": ">=9"
+    "pnpm": ">=10"
   },
   "scripts": {
     "build": "pnpm -r build",
