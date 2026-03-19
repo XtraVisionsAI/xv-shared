@@ -15,12 +15,12 @@ export async function createUnocssConfig(options: boolean | OptionsUnoCSS = {}):
 
   return [
     {
-      name: '@shared/eslint-config/unocss/core',
+      name: '@xv-shared/eslint-config/unocss/core',
       plugins: unocss.plugins as any,
       rules: unocss.rules
     },
     {
-      name: '@shared/eslint-config/unocss/rules',
+      name: '@xv-shared/eslint-config/unocss/rules',
       rules: {
         ...unocss.rules,
         ...(attributify

@@ -12,12 +12,13 @@ export async function createImportsConfig(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      name: `@shared/eslint-config/imports/rules`,
+      name: `@xv-shared/eslint-config/imports/rules`,
       plugins: {
         import: pluginImport as any,
         'unused-imports': pluginUnusedImports
       },
       rules: {
+        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
         'import/first': 'error',
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
@@ -25,30 +26,6 @@ export async function createImportsConfig(): Promise<TypedFlatConfigItem[]> {
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
         'import/newline-after-import': ['error', { count: 1 }],
-        'import/order': [
-          'error',
-          {
-            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'type', 'object'],
-            pathGroups: [
-              {
-                group: 'builtin',
-                pattern: '{node:}**',
-                position: 'before'
-              },
-              {
-                group: 'internal',
-                pattern: '{{@,~}/,#}**',
-                position: 'before'
-              }
-            ],
-            'newlines-between': 'always',
-            alphabetize: {
-              order: 'asc',
-              orderImportKind: 'asc',
-              caseInsensitive: true
-            }
-          }
-        ],
 
         'unused-imports/no-unused-imports': 'warn',
         'unused-imports/no-unused-vars': [

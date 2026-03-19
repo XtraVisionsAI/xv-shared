@@ -179,14 +179,12 @@ export interface OptionsPrettier {
   /**
    * @default
    * {
-   *  "css": true,
    *  "html": true,
    *  "json": true,
    *  "markdown": true
    * }
    */
   formatters?: {
-    css?: boolean
     html?: boolean
     json?: boolean
     markdown?: boolean
@@ -208,9 +206,24 @@ export interface OptionsOverrides {
   overrides?: TypedFlatConfigItem['rules']
 }
 
-export interface OptionsReact extends OptionsOverrides {}
-
 export interface OptionsMarkdown extends OptionsOverrides, OptionsComponentExts {}
+
+export interface OptionsVue extends OptionsOverrides {
+  /**
+   * Enable a11y accessibility rules for Vue.
+   * Requires installing: eslint-plugin-vue-a11y
+   * @default false
+   */
+  a11y?: boolean
+
+  /**
+   * Enable SFC blocks processing.
+   * Allows linting <script> and <style> blocks independently.
+   * Requires: eslint-processor-vue-blocks
+   * @default false
+   */
+  sfcBlocks?: boolean
+}
 
 export interface OptionsTypeScript extends OptionsOverrides, OptionsComponentExts {
   tsconfigPath?: string | string[]
@@ -285,14 +298,7 @@ export interface UserOptions {
    *
    * @default auto-detect based on the dependencies
    */
-  vue?: boolean | OptionsOverrides
-  /**
-   * Enable React support.
-   * When vue is false or not set, you can enable react support.
-   *
-   * @default false
-   */
-  react?: boolean | OptionsReact
+  vue?: boolean | OptionsVue
   /**
    * Enable linting for **code snippets** in Markdown.
    *
@@ -307,6 +313,18 @@ export interface UserOptions {
    * @default true
    */
   jsonc?: boolean | OptionsOverrides
+  /**
+   * Enable regexp rules.
+   *
+   * @default false
+   */
+  regexp?: boolean | { level?: 'error' | 'warn'; overrides?: TypedFlatConfigItem['rules'] }
+  /**
+   * Enable e18e modernization rules.
+   *
+   * @default false
+   */
+  e18e?: boolean | { modernization?: boolean; overrides?: TypedFlatConfigItem['rules'] }
 }
 
 export type { FlatConfigComposer, ConfigNames }

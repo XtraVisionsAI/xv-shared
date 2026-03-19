@@ -17,13 +17,13 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
 
   return [
     {
-      name: '@shared/eslint-config/jsonc/core',
+      name: '@xv-shared/eslint-config/jsonc/core',
       plugins: {
         jsonc: pluginJsonc as any
       }
     },
     {
-      name: '@shared/eslint-config/jsonc/global/rules',
+      name: '@xv-shared/eslint-config/jsonc/global/rules',
       files,
       languageOptions: {
         parser: parserJsonc
@@ -70,7 +70,7 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
       }
     },
     {
-      name: '@shared/eslint-config/jsonc/package-json/rules',
+      name: '@xv-shared/eslint-config/jsonc/package-json/rules',
       files: [GLOB_PACKAGE_JSON],
       rules: {
         'jsonc/sort-array-values': [
@@ -162,7 +162,7 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
       }
     },
     {
-      name: '@shared/eslint-config/jsonc/tsconfig-json/rules',
+      name: '@xv-shared/eslint-config/jsonc/tsconfig-json/rules',
       files: [GLOB_TS_CONFIG, GLOB_TS_OTHER_CONFIG],
       rules: {
         'jsonc/sort-keys': [

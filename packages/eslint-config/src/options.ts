@@ -28,7 +28,6 @@ const DEFAULT_PRETTIER_RULES: PrettierRules = {
 
 const DEFAULT_PRETTIER_FORMATTERS = {
   html: true,
-  css: true,
   json: true,
   markdown: true
 }
@@ -57,10 +56,11 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     javascript: {},
     typescript: {},
     vue: {},
-    react: false,
     unocss: { attributify: true, strict: false },
     markdown: {},
-    jsonc: {}
+    jsonc: {},
+    regexp: false,
+    e18e: false
   }
 
   const {
@@ -72,9 +72,10 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     typescript,
     unocss,
     vue,
-    react,
     markdown = true,
-    jsonc = true
+    jsonc = true,
+    regexp = false,
+    e18e = false
   } = options
 
   //cwd
@@ -147,13 +148,18 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     opts.jsonc = jsonc
   }
 
-  // react
-  if (typeof react === 'object') {
-    opts.react = Object.assign({}, react)
-  } else if (react === true) {
-    opts.react = {}
-  } else if (react === false) {
-    opts.react = false
+  //regexp
+  if (typeof regexp === 'object') {
+    opts.regexp = Object.assign({}, regexp)
+  } else if (regexp === true) {
+    opts.regexp = {}
+  }
+
+  //e18e
+  if (typeof e18e === 'object') {
+    opts.e18e = Object.assign({}, e18e)
+  } else if (e18e === true) {
+    opts.e18e = {}
   }
 
   return opts

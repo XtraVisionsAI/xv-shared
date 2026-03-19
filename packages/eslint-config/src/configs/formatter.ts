@@ -3,15 +3,11 @@
  */
 
 import {
-  GLOB_CSS,
   GLOB_HTML,
   GLOB_JSON,
   GLOB_JSON5,
   GLOB_JSONC,
-  GLOB_LESS,
-  GLOB_MARKDOWN,
-  GLOB_POSTCSS,
-  GLOB_SCSS
+  GLOB_MARKDOWN
 } from '../globs'
 import { interopDefault } from '../shared'
 
@@ -43,7 +39,7 @@ export async function createFormatterConfig(options: boolean | OptionsPrettier =
 
   const opts = options as OptionsPrettier
 
-  const { html = true, css = true, json = true, markdown = true } = opts.formatters || {}
+  const { html = true, json = true, markdown = true } = opts.formatters || {}
   const prettierRules = opts.rules || {}
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
@@ -61,7 +57,7 @@ export async function createFormatterConfig(options: boolean | OptionsPrettier =
     }
 
     const config: TypedFlatConfigItem = {
-      name: `@shared/eslint-config/formatter-${parser}/rules`,
+      name: `@xv-shared/eslint-config/formatter-${parser}/rules`,
       files,
       languageOptions: {
         parser: parserPlain
@@ -79,7 +75,7 @@ export async function createFormatterConfig(options: boolean | OptionsPrettier =
 
   const configs: TypedFlatConfigItem[] = [
     {
-      name: '@shared/eslint-config/prettier/core',
+      name: '@xv-shared/eslint-config/prettier/core',
       plugins: {
         prettier: pluginPrettier
       },
@@ -90,14 +86,6 @@ export async function createFormatterConfig(options: boolean | OptionsPrettier =
       }
     }
   ]
-
-  if (css) {
-    const cssConfig = createPrettierFormatter([GLOB_CSS, GLOB_POSTCSS], 'css')
-    const scssConfig = createPrettierFormatter([GLOB_SCSS], 'scss')
-    const lessConfig = createPrettierFormatter([GLOB_LESS], 'less')
-
-    configs.push(cssConfig, scssConfig, lessConfig)
-  }
 
   if (html) {
     const htmlConfig = createPrettierFormatter([GLOB_HTML], 'html')

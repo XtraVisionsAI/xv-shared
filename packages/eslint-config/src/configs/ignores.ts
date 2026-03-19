@@ -22,7 +22,7 @@ export async function createIgnoresConfig(
 
   return [
     {
-      name: '@shared/eslint-config/ignores/rules',
+      name: '@xv-shared/eslint-config/ignores/rules',
       ignores: [...excludes, ...ignores]
     }
   ]

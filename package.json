@@ -1,6 +1,7 @@
 {
   "name": "@xv-shared/root",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@10.18.2",
   "engines": {
@@ -9,10 +10,20 @@
   },
   "scripts": {
     "build": "pnpm -r build",
-    "lint": "pnpm -r lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:style": "stylelint \"**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"**/*.{css,scss,vue}\" --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "release": "changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "catalog:"
+    "@changesets/cli": "catalog:",
+    "@xv-shared/eslint-config": "workspace:*",
+    "@xv-shared/stylelint-config": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "stylelint": "catalog:"
   }
 }

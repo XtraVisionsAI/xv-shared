@@ -11,7 +11,7 @@ export async function createNodeConfig(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      name: `@shared/eslint-config/node/rules`,
+      name: `@xv-shared/eslint-config/node/rules`,
       plugins: {
         node: pluginNode
       },

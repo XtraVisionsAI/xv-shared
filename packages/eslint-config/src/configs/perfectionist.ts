@@ -11,9 +11,32 @@ export async function createPerfectionistConfig(): Promise<TypedFlatConfigItem[]
 
   return [
     {
-      name: '@shared/eslint-config/perfectionist/rules',
+      name: '@xv-shared/eslint-config/perfectionist/rules',
       plugins: {
         perfectionist: pluginPerfectionist
+      },
+      rules: {
+        'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-imports': [
+          'error',
+          {
+            groups: [
+              'type',
+              ['builtin', 'external'],
+              'internal-type',
+              'internal',
+              ['parent-type', 'sibling-type', 'index-type'],
+              ['parent', 'sibling', 'index'],
+              'object',
+              'unknown'
+            ],
+            newlinesBetween: 'ignore',
+            order: 'asc',
+            type: 'natural'
+          }
+        ],
+        'perfectionist/sort-named-exports': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-named-imports': ['error', { order: 'asc', type: 'natural' }]
       }
     }
   ]

@@ -16,11 +16,11 @@ export async function createMarkdownConfig(options: boolean | OptionsMarkdown = 
 
   return [
     {
-      name: '@shared/eslint-config/markdown/core',
+      name: '@xv-shared/eslint-config/markdown/core',
       plugins: { markdown }
     },
     {
-      name: '@shared/eslint-config/markdown/processor',
+      name: '@xv-shared/eslint-config/markdown/processor',
       files,
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
       processor: mergeProcessors([markdown.processors.markdown, processorPassThrough])
@@ -34,7 +34,7 @@ export async function createMarkdownConfig(options: boolean | OptionsMarkdown = 
           }
         }
       },
-      name: '@shared/eslint-config/markdown/rules',
+      name: '@xv-shared/eslint-config/markdown/rules',
       rules: {
         'import/newline-after-import': 'off',
 

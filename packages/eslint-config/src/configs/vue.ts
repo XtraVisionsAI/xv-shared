@@ -7,15 +7,15 @@ import { interopDefault } from '../shared'
 
 import { createTsRules } from './typescript'
 
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
+import type { OptionsVue, TypedFlatConfigItem } from '../types'
 
 export async function createVueConfig(
-  options: boolean | OptionsOverrides = {},
+  options: boolean | OptionsVue = {},
   tsOverrides: TypedFlatConfigItem['rules'] = {}
 ): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []
 
-  const { files = [GLOB_VUE], overrides = {} } = options as OptionsOverrides
+  const { files = [GLOB_VUE], overrides = {}, a11y = false, sfcBlocks = false } = options as OptionsVue
 
   const [pluginVue, parserVue, parserTs] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
@@ -25,7 +25,18 @@ export async function createVueConfig(
 
   const tsRules = await createTsRules()
 
-  return [
+  let processor: any = pluginVue.processors!['.vue']
+
+  if (sfcBlocks) {
+    const { mergeProcessors, processorPassThrough } = await interopDefault(import('eslint-merge-processors'))
+    const processorVueBlocks = await interopDefault(import('eslint-processor-vue-blocks'))
+    processor = mergeProcessors([
+      pluginVue.processors!['.vue'],
+      processorVueBlocks()
+    ])
+  }
+
+  const configs: TypedFlatConfigItem[] = [
     {
       name: '@xv-shared/eslint-config/vue/core',
       languageOptions: {
@@ -64,7 +75,7 @@ export async function createVueConfig(
           sourceType: 'module'
         }
       },
-      processor: pluginVue.processors!['.vue'],
+      processor,
       rules: {
         ...tsRules,
         ...tsOverrides,
@@ -170,4 +181,20 @@ export async function createVueConfig(
       }
     }
   ]
+
+  if (a11y) {
+    const pluginVueA11y = await interopDefault(import('eslint-plugin-vuejs-accessibility'))
+    configs.push({
+      name: '@xv-shared/eslint-config/vue/a11y/rules',
+      files,
+      plugins: {
+        'vue-a11y': pluginVueA11y
+      },
+      rules: {
+        ...(pluginVueA11y.configs?.['flat/recommended'] as any)?.rules
+      }
+    })
+  }
+
+  return configs
 }

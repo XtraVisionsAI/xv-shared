@@ -16,7 +16,7 @@ export async function createJavascriptConfig(options: OptionsOverrides = {}): Pr
 
   return [
     {
-      name: `@shared/eslint-config/javascript/rules`,
+      name: `@xv-shared/eslint-config/javascript/rules`,
       languageOptions: {
         ecmaVersion: 2022,
         globals: {
@@ -247,13 +247,13 @@ export async function createJavascriptConfig(options: OptionsOverrides = {}): Pr
     },
     {
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
-      name: '@shared/eslint-config/javascript/disables/cli',
+      name: '@xv-shared/eslint-config/javascript/disables/cli',
       rules: {
         'no-console': 'off'
       }
     },
     {
-      name: `@shared/eslint-config/javascript/disables/test`,
+      name: `@xv-shared/eslint-config/javascript/disables/test`,
       files: GLOB_TESTS,
       rules: {
         'no-unused-expressions': 'off'

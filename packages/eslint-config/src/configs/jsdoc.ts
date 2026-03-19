@@ -11,7 +11,7 @@ export async function createJsDocConfig(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      name: '@shared/eslint-config/ignores/rules',
+      name: '@xv-shared/eslint-config/ignores/rules',
       plugins: {
         jsdoc: pluginJsdoc
       },

@@ -2,7 +2,18 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
+import type {
+  Awaitable,
+  ConfigNames,
+  FlatConfigComposer,
+  OptionsTypeScript,
+  TypedFlatConfigItem,
+  UserOptions
+} from './types'
+
 import { createCommentsConfig } from './configs/comments'
+import { createDisablesConfig } from './configs/disables'
+import { createE18eConfig } from './configs/e18e'
 import { createFormatterConfig } from './configs/formatter'
 import { createIgnoresConfig } from './configs/ignores'
 import { createImportsConfig } from './configs/imports'
@@ -12,22 +23,14 @@ import { createJSONConfig } from './configs/jsonc'
 import { createMarkdownConfig } from './configs/markdown'
 import { createNodeConfig } from './configs/node'
 import { createPerfectionistConfig } from './configs/perfectionist'
-import { createReactConfig } from './configs/react'
+import { createPnpmConfig } from './configs/pnpm'
+import { createRegexpConfig } from './configs/regexp'
 import { createTypescriptConfig } from './configs/typescript'
 import { createUnicornConfig } from './configs/unicorn'
 import { createUnocssConfig } from './configs/unocss'
 import { createVueConfig } from './configs/vue'
 import { createOptions } from './options'
 import { composer, defaultPluginRenaming } from './shared'
-
-import type {
-  Awaitable,
-  ConfigNames,
-  FlatConfigComposer,
-  OptionsTypeScript,
-  TypedFlatConfigItem,
-  UserOptions
-} from './types'
 
 export default async function defineConfig(
   options: Partial<UserOptions> = {},
@@ -51,7 +54,10 @@ export default async function defineConfig(
   const unicorn = await createUnicornConfig()
   const unocss = await createUnocssConfig(opts.unocss)
   const vue = await createVueConfig(opts.vue, tsOverride)
-  const react = await createReactConfig(opts.react)
+  const regexp = opts.regexp ? await createRegexpConfig(opts.regexp === true ? {} : opts.regexp) : []
+  const e18e = opts.e18e ? await createE18eConfig(opts.e18e === true ? {} : opts.e18e) : []
+  const pnpm = await createPnpmConfig()
+  const disables = await createDisablesConfig()
 
   const userResolved = await Promise.all(userConfigs)
 
@@ -69,11 +75,15 @@ export default async function defineConfig(
     ...typescript,
     ...unocss,
     ...vue,
-    ...react,
+    ...regexp,
+    ...e18e,
     ...json,
     ...markdown,
     //userdefined
     ...userResolved,
+    //always-on
+    ...pnpm,
+    ...disables,
     //formatter
     ...formatter
   ]

@@ -11,16 +11,16 @@ export async function createUnicornConfig(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      name: '@shared/eslint-config/unicorn/rules',
+      name: '@xv-shared/eslint-config/unicorn/rules',
       plugins: {
         unicorn: pluginUnicorn
       },
       rules: {
+        'unicorn/consistent-empty-array-spread': 'error',
         'unicorn/error-message': 'error',
         'unicorn/escape-case': 'error',
-        'unicorn/no-instanceof-array': 'error',
-        'unicorn/no-new-array': 'error',
-        'unicorn/no-new-buffer': 'error',
+        'unicorn/new-for-builtins': 'error',
+        'unicorn/no-instanceof-builtins': 'error',
         'unicorn/number-literal-case': 'error',
         'unicorn/prefer-dom-node-text-content': 'error',
         'unicorn/prefer-includes': 'error',

@@ -11,7 +11,7 @@ export async function createCommentsConfig(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      name: '@shared/eslint-config/comments/rules',
+      name: '@xv-shared/eslint-config/comments/rules',
       plugins: {
         'eslint-comments': pluginComments
       },

@@ -94,7 +94,7 @@ export async function createTypescriptConfig(
 
   function makeParser(typeAware: boolean, files: string[], ignores?: string[]): TypedFlatConfigItem {
     return {
-      name: `@shared/eslint-config/typescript/${typeAware ? 'type-aware-parser' : 'parser'}`,
+      name: `@xv-shared/eslint-config/typescript/${typeAware ? 'type-aware-parser' : 'parser'}`,
       files,
       ...(ignores ? { ignores } : {}),
       languageOptions: {
@@ -116,7 +116,7 @@ export async function createTypescriptConfig(
 
   return [
     {
-      name: '@shared/eslint-config/typescript/core',
+      name: '@xv-shared/eslint-config/typescript/core',
       plugins: {
         ts: pluginTs as any
       }
@@ -125,7 +125,7 @@ export async function createTypescriptConfig(
       ? [makeParser(true, filesTypeAware), makeParser(false, files, filesTypeAware)]
       : [makeParser(false, files)]),
     {
-      name: '@shared/eslint-config/typescript/rules',
+      name: '@xv-shared/eslint-config/typescript/rules',
       files,
       rules: {
         ...tsRules,
@@ -135,7 +135,7 @@ export async function createTypescriptConfig(
     ...(isTypeAware
       ? [
           {
-            name: '@shared/eslint-config/typescript/type-aware/rules',
+            name: '@xv-shared/eslint-config/typescript/type-aware/rules',
             files: filesTypeAware,
             rules: {
               ...(tsconfigPath ? typeAwareRules : {}),
@@ -145,7 +145,7 @@ export async function createTypescriptConfig(
         ]
       : []),
     {
-      name: '@shared/eslint-config/typescript/disables/dts',
+      name: '@xv-shared/eslint-config/typescript/disables/dts',
       files: ['**/*.d.ts'],
       rules: {
         'eslint-comments/no-unlimited-disable': 'off',
@@ -155,7 +155,7 @@ export async function createTypescriptConfig(
       }
     },
     {
-      name: '@shared/eslint-config/typescript/disables/cjs',
+      name: '@xv-shared/eslint-config/typescript/disables/cjs',
       files: ['**/*.js', '**/*.cjs'],
       rules: {
         'ts/no-require-imports': 'off',
