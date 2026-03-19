@@ -20,19 +20,21 @@ interface IconOptions extends Options {
 }
 
 function configIconPlugin(_env: ViteEnv, _mode: string, opt?: IconOptions) {
-  if (opt?.iconDir !== undefined) {
-    // Bug Fix #3：展开合并，保留所有 collections（原代码会覆盖整个 customCollections）
-    defaultOpt.customCollections = {
-      ...defaultOpt.customCollections,
-      local: FileSystemIconLoader(opt.iconDir, (svg) =>
-        svg.replace(/^<svg /, '<svg fill="currentColor" width="1.2em" height="1.2em"')
-      ),
-    }
-    delete opt.iconDir
+  const { iconDir, ...restOpt } = opt ?? {}
+
+  const customCollections = {
+    ...defaultOpt.customCollections,
+    ...(iconDir !== undefined
+      ? {
+          local: FileSystemIconLoader(iconDir, (svg) =>
+            svg.replace(/^<svg /, '<svg fill="currentColor" width="1.2em" height="1.2em"')
+          )
+        }
+      : {})
   }
 
-  return Icons(merge(defaultOpt, opt)) as any as Plugin
-  // 注：此处 as any as Plugin 是 unplugin-icons 类型与 Vite Plugin 类型的已知不兼容
+  return Icons(merge({}, defaultOpt, { customCollections }, restOpt)) as any as Plugin
+  // 注：as any as Plugin 是 unplugin-icons 类型与 Vite Plugin 类型的已知不兼容
 }
 
 export { configIconPlugin, type IconOptions }
