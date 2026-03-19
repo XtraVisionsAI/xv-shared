@@ -9,6 +9,9 @@
     "dev.json",
     "node.json"
   ],
+  "peerDependencies": {
+    "typescript": ">=5.0"
+  },
   "publishConfig": {
     "access": "public"
   }

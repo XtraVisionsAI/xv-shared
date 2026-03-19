@@ -12,6 +12,12 @@ catalogs:
     '@stylistic/stylelint-config':
       specifier: ^2.0.0
       version: 2.0.0
+    postcss-html:
+      specifier: ^1.7.0
+      version: 1.8.1
+    postcss-scss:
+      specifier: ^4.0.9
+      version: 4.0.9
     stylelint:
       specifier: ^16.13.0
       version: 16.26.1
@@ -49,33 +55,43 @@ importers:
     dependencies:
       '@stylistic/stylelint-config':
         specifier: 'catalog:'
-        version: 2.0.0(stylelint@16.26.1)
+        version: 2.0.0(stylelint@16.26.1(typescript@5.9.3))
+      postcss-html:
+        specifier: 'catalog:'
+        version: 1.8.1
+      postcss-scss:
+        specifier: 'catalog:'
+        version: 4.0.9(postcss@8.5.8)
       stylelint:
         specifier: 'catalog:'
-        version: 16.26.1
+        version: 16.26.1(typescript@5.9.3)
       stylelint-config-property-sort-order-smacss:
         specifier: 'catalog:'
-        version: 10.0.0(stylelint@16.26.1)
+        version: 10.0.0(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-recommended:
         specifier: 'catalog:'
-        version: 15.0.0(stylelint@16.26.1)
+        version: 15.0.0(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-recommended-scss:
         specifier: 'catalog:'
-        version: 14.1.0(postcss@8.5.8)(stylelint@16.26.1)
+        version: 14.1.0(postcss@8.5.8)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-recommended-vue:
         specifier: 'catalog:'
-        version: 1.6.1(postcss-html@1.8.1)(stylelint@16.26.1)
+        version: 1.6.1(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-order:
         specifier: 'catalog:'
-        version: 6.0.4(stylelint@16.26.1)
+        version: 6.0.4(stylelint@16.26.1(typescript@5.9.3))
       stylelint-prettier:
         specifier: 'catalog:'
-        version: 5.0.3(prettier@2.8.8)(stylelint@16.26.1)
+        version: 5.0.3(prettier@2.8.8)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-scss:
         specifier: 'catalog:'
-        version: 6.14.0(stylelint@16.26.1)
+        version: 6.14.0(stylelint@16.26.1(typescript@5.9.3))
 
-  packages/ts-config: {}
+  packages/ts-config:
+    dependencies:
+      typescript:
+        specifier: '>=5.0'
+        version: 5.9.3
 
 packages:
 
@@ -906,6 +922,11 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
     engines: {node: '>= 4.0.0'}
@@ -1160,12 +1181,12 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@stylistic/stylelint-config@2.0.0(stylelint@16.26.1)':
+  '@stylistic/stylelint-config@2.0.0(stylelint@16.26.1(typescript@5.9.3))':
     dependencies:
-      '@stylistic/stylelint-plugin': 3.1.3(stylelint@16.26.1)
-      stylelint: 16.26.1
+      '@stylistic/stylelint-plugin': 3.1.3(stylelint@16.26.1(typescript@5.9.3))
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  '@stylistic/stylelint-plugin@3.1.3(stylelint@16.26.1)':
+  '@stylistic/stylelint-plugin@3.1.3(stylelint@16.26.1(typescript@5.9.3))':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
@@ -1175,7 +1196,7 @@ snapshots:
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       style-search: 0.1.0
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
   '@types/node@12.20.55': {}
 
@@ -1234,12 +1255,14 @@ snapshots:
 
   colord@2.9.3: {}
 
-  cosmiconfig@9.0.1:
+  cosmiconfig@9.0.1(typescript@5.9.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.9.3
 
   cross-spawn@7.0.6:
     dependencies:
@@ -1671,55 +1694,55 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-html@1.1.0(postcss-html@1.8.1)(stylelint@16.26.1):
+  stylelint-config-html@1.1.0(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.8.1
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-config-property-sort-order-smacss@10.0.0(stylelint@16.26.1):
+  stylelint-config-property-sort-order-smacss@10.0.0(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       css-property-sort-order-smacss: 2.2.0
-      stylelint: 16.26.1
-      stylelint-order: 6.0.4(stylelint@16.26.1)
+      stylelint: 16.26.1(typescript@5.9.3)
+      stylelint-order: 6.0.4(stylelint@16.26.1(typescript@5.9.3))
 
-  stylelint-config-recommended-scss@14.1.0(postcss@8.5.8)(stylelint@16.26.1):
+  stylelint-config-recommended-scss@14.1.0(postcss@8.5.8)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.8)
-      stylelint: 16.26.1
-      stylelint-config-recommended: 14.0.1(stylelint@16.26.1)
-      stylelint-scss: 6.14.0(stylelint@16.26.1)
+      stylelint: 16.26.1(typescript@5.9.3)
+      stylelint-config-recommended: 14.0.1(stylelint@16.26.1(typescript@5.9.3))
+      stylelint-scss: 6.14.0(stylelint@16.26.1(typescript@5.9.3))
     optionalDependencies:
       postcss: 8.5.8
 
-  stylelint-config-recommended-vue@1.6.1(postcss-html@1.8.1)(stylelint@16.26.1):
+  stylelint-config-recommended-vue@1.6.1(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.8.1
       semver: 7.7.4
-      stylelint: 16.26.1
-      stylelint-config-html: 1.1.0(postcss-html@1.8.1)(stylelint@16.26.1)
-      stylelint-config-recommended: 15.0.0(stylelint@16.26.1)
+      stylelint: 16.26.1(typescript@5.9.3)
+      stylelint-config-html: 1.1.0(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3))
+      stylelint-config-recommended: 15.0.0(stylelint@16.26.1(typescript@5.9.3))
 
-  stylelint-config-recommended@14.0.1(stylelint@16.26.1):
+  stylelint-config-recommended@14.0.1(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-config-recommended@15.0.0(stylelint@16.26.1):
+  stylelint-config-recommended@15.0.0(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-order@6.0.4(stylelint@16.26.1):
+  stylelint-order@6.0.4(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       postcss: 8.5.8
       postcss-sorting: 8.0.2(postcss@8.5.8)
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-prettier@5.0.3(prettier@2.8.8)(stylelint@16.26.1):
+  stylelint-prettier@5.0.3(prettier@2.8.8)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.1
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-scss@6.14.0(stylelint@16.26.1):
+  stylelint-scss@6.14.0(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       css-tree: 3.2.1
       is-plain-object: 5.0.0
@@ -1729,9 +1752,9 @@ snapshots:
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
-      stylelint: 16.26.1
+      stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint@16.26.1:
+  stylelint@16.26.1(typescript@5.9.3):
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-syntax-patches-for-csstree': 1.1.1(css-tree@3.2.1)
@@ -1741,7 +1764,7 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.2.1
       balanced-match: 2.0.0
       colord: 2.9.3
-      cosmiconfig: 9.0.1
+      cosmiconfig: 9.0.1(typescript@5.9.3)
       css-functions-list: 3.3.3
       css-tree: 3.2.1
       debug: 4.4.3
@@ -1800,6 +1823,8 @@ snapshots:
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
+
+  typescript@5.9.3: {}
 
   universalify@0.1.2: {}
 

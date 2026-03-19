@@ -2,14 +2,19 @@
   "name": "@xv-shared/stylelint-config",
   "version": "1.0.0",
   "description": "shared config for stylelint",
+  "author": "XtraVisions",
   "license": "EULA",
   "main": "config/base.json",
   "files": [
     "config"
   ],
+  "peerDependencies": {
+    "stylelint": "catalog:"
+  },
   "dependencies": {
     "@stylistic/stylelint-config": "catalog:",
-    "stylelint": "catalog:",
+    "postcss-html": "catalog:",
+    "postcss-scss": "catalog:",
     "stylelint-config-property-sort-order-smacss": "catalog:",
     "stylelint-config-recommended": "catalog:",
     "stylelint-config-recommended-scss": "catalog:",

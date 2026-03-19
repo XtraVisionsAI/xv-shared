@@ -11,7 +11,7 @@
       "files": ["*.scss", "**/*.scss"],
       "customSyntax": "postcss-scss",
       "extends": ["stylelint-config-recommended-scss", "stylelint-config-recommended-vue/scss"],
-      "rule": { "scss/percent-placeholder-pattern": null }
+      "rules": { "scss/percent-placeholder-pattern": null }
     }
   ],
   "rules": {
