@@ -1,4 +1,0 @@
-# pnpm catalog — 所有包共享的依赖版本
-# 包内 package.json 使用 "catalog:" 引用这里声明的版本
-
-"@changesets/cli": "^2.27.9"
