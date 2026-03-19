@@ -149,7 +149,7 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
 
   // react
   if (typeof react === 'object') {
-    Object.assign(opts.react, react)
+    opts.react = Object.assign({}, react)
   } else if (react === true) {
     opts.react = {}
   } else if (react === false) {
