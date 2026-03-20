@@ -8,7 +8,7 @@ const defaultOpt = {
   excludes: ['**/components/**/*.vue']
 }
 
-function configAutoLayoutPlugin(_env: ViteEnv, _mode: string, opt?: AutoLayoutOptions) {
+function configAutoLayoutPlugin(opt?: AutoLayoutOptions) {
   return MetaLayouts(merge(defaultOpt, opt))
 }
 

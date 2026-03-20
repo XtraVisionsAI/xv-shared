@@ -8,7 +8,7 @@ interface AutoRouterOptions extends Omit<Options, 'dts'> {
   dts?: string
 }
 
-function configAutoRouterPlugin(_env: ViteEnv, _mode: string, opt?: AutoRouterOptions) {
+function configAutoRouterPlugin(opt?: AutoRouterOptions) {
   const defaultOpt = {
     dts: opt?.dts ?? 'types/generated/typed-router.d.ts'
   }

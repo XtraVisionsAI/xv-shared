@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
+ */
+
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -24,7 +28,7 @@ export interface PluginOptions {
   icon?: IconOptions
 }
 
-export function createVitePlugins(env: ViteEnv, mode: string, opt: PluginOptions): Plugin[] {
+export function createVitePlugins(opt: PluginOptions, mode?: string): Plugin[] {
   const vitePlugins: Plugin[] = [vue(), vueJsx(), vueSetupExtend()]
 
   vitePlugins.push(
@@ -34,13 +38,13 @@ export function createVitePlugins(env: ViteEnv, mode: string, opt: PluginOptions
     })
   )
 
-  vitePlugins.push(configAutoImportPlugin(env, mode, opt.autoImport) as unknown as Plugin)
-  vitePlugins.push(configAutoComponentsPlugin(env, mode, opt.autoComponents) as unknown as Plugin)
-  vitePlugins.push(configAutoRouterPlugin(env, mode, opt.autoRouter))
-  vitePlugins.push(configAutoLayoutPlugin(env, mode, opt.autoLayout) as unknown as Plugin)
-  vitePlugins.push(...configHtmlPlugin(env, mode, opt.html))
-  vitePlugins.push(...configUnoCSSPlugin(env, mode, opt.css))
-  vitePlugins.push(configIconPlugin(env, mode, opt.icon))
+  vitePlugins.push(configAutoImportPlugin(opt.autoImport) as unknown as Plugin)
+  vitePlugins.push(configAutoComponentsPlugin(opt.autoComponents) as unknown as Plugin)
+  vitePlugins.push(configAutoRouterPlugin(opt.autoRouter))
+  vitePlugins.push(configAutoLayoutPlugin(opt.autoLayout) as unknown as Plugin)
+  vitePlugins.push(...configHtmlPlugin(opt.html))
+  vitePlugins.push(...configUnoCSSPlugin(opt.css))
+  vitePlugins.push(configIconPlugin(opt.icon))
   vitePlugins.push(visualizer())
 
   return vitePlugins

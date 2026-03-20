@@ -7,7 +7,7 @@ interface AutoImportOptions extends Omit<Options, 'dts'> {
   dts?: string
 }
 
-function configAutoImportPlugin(_env: ViteEnv, _mode: string, opt?: AutoImportOptions) {
+function configAutoImportPlugin(opt?: AutoImportOptions) {
   const defaultOpt: Options = {
     include: [
       /\.[tj]sx?$/,

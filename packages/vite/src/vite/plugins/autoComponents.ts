@@ -12,7 +12,7 @@ interface AutoComponentsOptions extends Omit<Options, 'dirs' | 'dts' | 'resolver
   resolvers?: ComponentResolver[]
 }
 
-function configAutoComponentsPlugin(_env: ViteEnv, _mode: string, opt?: AutoComponentsOptions) {
+function configAutoComponentsPlugin(opt?: AutoComponentsOptions) {
   const defaultOpt: Options = {
     dirs: opt?.dirs ?? ['src/**/components'],
     resolvers: [

@@ -19,7 +19,7 @@ const defaultOpt: HtmlOptions = {
   template: 'index.html'
 }
 
-function configHtmlPlugin(_env: ViteEnv, _mode: string, opt?: HtmlOptions): Plugin[] {
+function configHtmlPlugin(opt?: HtmlOptions): Plugin[] {
   // as unknown as Plugin[]：PluginOption 与 Plugin[] 的已知类型不兼容，运行时实际返回数组
   return createHtmlPlugin(merge(defaultOpt, opt)) as unknown as Plugin[]
 }

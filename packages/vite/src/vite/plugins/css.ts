@@ -9,7 +9,7 @@ const defaultOpt = {
   transformers: [transformerDirectives(), transformerVariantGroup()]
 }
 
-function configUnoCSSPlugin(_env: ViteEnv, _mode: string, opt?: CssOptions) {
+function configUnoCSSPlugin(opt?: CssOptions) {
   return UnoCSS(merge(defaultOpt, opt))
 }
 

@@ -19,7 +19,7 @@ interface IconOptions extends Options {
   iconDir?: string
 }
 
-function configIconPlugin(_env: ViteEnv, _mode: string, opt?: IconOptions) {
+function configIconPlugin(opt?: IconOptions) {
   const { iconDir, ...restOpt } = opt ?? {}
 
   const customCollections = {

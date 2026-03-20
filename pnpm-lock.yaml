@@ -373,8 +373,6 @@ importers:
         specifier: '>=5.0'
         version: 5.9.3
 
-  packages/types: {}
-
   packages/vite:
     dependencies:
       '@unocss/transformer-directives':
@@ -429,9 +427,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 22.19.15
-      '@xv-shared/types':
-        specifier: workspace:*
-        version: link:../types
       tsup:
         specifier: 'catalog:'
         version: 8.5.1(@swc/core@1.15.18)(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
