@@ -42,6 +42,7 @@ pnpm add -D @xv-shared/vite
 
 ```ts
 // vite.config.ts
+import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
 export default defineConfig({
