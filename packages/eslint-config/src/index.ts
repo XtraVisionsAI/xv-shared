@@ -59,7 +59,7 @@ export default async function defineConfig(
   const pnpm = await createPnpmConfig()
   const disables = await createDisablesConfig()
 
-  const userResolved = await Promise.all(userConfigs)
+  const userResolved = await Promise.all(userConfigs.map((c) => Promise.resolve(c)))
 
   const configs: TypedFlatConfigItem[] = [
     //basic

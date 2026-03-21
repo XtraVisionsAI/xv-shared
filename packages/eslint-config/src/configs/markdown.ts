@@ -73,6 +73,7 @@ export async function createMarkdownConfig(options: boolean | OptionsMarkdown = 
           'ts/no-implied-eval': 'off',
           'ts/no-misused-promises': 'off',
           'ts/no-throw-literal': 'off',
+          'ts/only-throw-error': 'off',
           'ts/no-unnecessary-type-assertion': 'off',
           'ts/no-unsafe-argument': 'off',
           'ts/no-unsafe-assignment': 'off',

@@ -78,7 +78,7 @@ export async function createTypescriptConfig(
     'ts/no-for-in-array': 'error',
     'ts/no-implied-eval': 'error',
     'ts/no-misused-promises': 'error',
-    'ts/no-throw-literal': 'error',
+    'ts/only-throw-error': 'error',
     'ts/no-unnecessary-type-assertion': 'error',
     'ts/no-unsafe-argument': 'error',
     'ts/no-unsafe-assignment': 'error',
