@@ -6,6 +6,9 @@ import defineConfig from '@xv-shared/eslint-config'
 
 export default defineConfig({
   vue: true,
-  typescript: true,
-  unocss: false
+  typescript: {
+    tsconfigPath: './tsconfig.json'
+  },
+  unocss: false,
+  ignores: ['**/node_modules/**', '**/dist/**']
 })

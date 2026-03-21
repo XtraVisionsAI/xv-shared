@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./packages/ts-config/base.json",
+  "compilerOptions": {
+    "noUnusedLocals": false
+  },
+  "include": [
+    "packages/eslint-config/src/**/*.ts",
+    "packages/vite/src/**/*.ts"
+  ],
+  "exclude": ["**/node_modules/**", "**/dist/**"]
+}
