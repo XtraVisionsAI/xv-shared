@@ -2,9 +2,9 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { interopDefault } from '../shared'
-
 import type { TypedFlatConfigItem } from '../types'
+
+import { interopDefault } from '../shared'
 
 export async function createUnicornConfig(): Promise<TypedFlatConfigItem[]> {
   const pluginUnicorn = await interopDefault(import('eslint-plugin-unicorn'))

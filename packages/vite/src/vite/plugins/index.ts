@@ -2,21 +2,28 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
+import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import type { AutoComponentsOptions } from './autoComponents'
+import type { AutoImportOptions } from './autoImport'
 
-import { type AutoComponentsOptions, configAutoComponentsPlugin } from './autoComponents'
-import { type AutoImportOptions, configAutoImportPlugin } from './autoImport'
-import { type AutoLayoutOptions, configAutoLayoutPlugin } from './autoLayout'
-import { type AutoRouterOptions, configAutoRouterPlugin } from './autoRouter'
-import { type CssOptions, configUnoCSSPlugin } from './css'
-import { type HtmlOptions, configHtmlPlugin } from './html'
-import { type IconOptions, configIconPlugin } from './icons'
+import type { AutoLayoutOptions } from './autoLayout'
+import type { AutoRouterOptions } from './autoRouter'
+import type { CssOptions } from './css'
+import type { HtmlOptions } from './html'
+import type { IconOptions } from './icons'
 
-import type { Plugin } from 'vite'
+import { configAutoComponentsPlugin } from './autoComponents'
+import { configAutoImportPlugin } from './autoImport'
+import { configAutoLayoutPlugin } from './autoLayout'
+import { configAutoRouterPlugin } from './autoRouter'
+import { configUnoCSSPlugin } from './css'
+import { configHtmlPlugin } from './html'
+import { configIconPlugin } from './icons'
 
 export interface PluginOptions {
   autoComponents?: AutoComponentsOptions
@@ -28,7 +35,7 @@ export interface PluginOptions {
   icon?: IconOptions
 }
 
-export function createVitePlugins(opt: PluginOptions, mode?: string): Plugin[] {
+export function createVitePlugins(opt: PluginOptions, _mode?: string): Plugin[] {
   const vitePlugins: Plugin[] = [vue(), vueJsx(), vueSetupExtend()]
 
   vitePlugins.push(

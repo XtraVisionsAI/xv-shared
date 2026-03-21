@@ -2,12 +2,12 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
+import type { OptionsVue, TypedFlatConfigItem } from '../types'
 import { GLOB_VUE } from '../globs'
+
 import { interopDefault } from '../shared'
 
 import { createTsRules } from './typescript'
-
-import type { OptionsVue, TypedFlatConfigItem } from '../types'
 
 export async function createVueConfig(
   options: boolean | OptionsVue = {},
@@ -28,12 +28,9 @@ export async function createVueConfig(
   let processor: any = pluginVue.processors!['.vue']
 
   if (sfcBlocks) {
-    const { mergeProcessors, processorPassThrough } = await interopDefault(import('eslint-merge-processors'))
+    const { mergeProcessors } = await interopDefault(import('eslint-merge-processors'))
     const processorVueBlocks = await interopDefault(import('eslint-processor-vue-blocks'))
-    processor = mergeProcessors([
-      pluginVue.processors!['.vue'],
-      processorVueBlocks()
-    ])
+    processor = mergeProcessors([pluginVue.processors!['.vue'], processorVueBlocks()])
   }
 
   const configs: TypedFlatConfigItem[] = [

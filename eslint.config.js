@@ -4,11 +4,25 @@
 
 import defineConfig from '@xv-shared/eslint-config'
 
-export default defineConfig({
-  vue: true,
-  typescript: {
-    tsconfigPath: './tsconfig.json'
+export default defineConfig(
+  {
+    vue: true,
+    typescript: {
+      tsconfigPath: './tsconfig.json'
+    },
+    unocss: false,
+    markdown: false,
+    ignores: ['**/node_modules/**', '**/dist/**', '**/typesgen.d.ts']
   },
-  unocss: false,
-  ignores: ['**/node_modules/**', '**/dist/**']
-})
+  {
+    // eslint-config source interacts with untyped third-party plugin APIs
+    files: ['packages/eslint-config/src/**/*.ts', 'packages/vite/src/**/*.ts'],
+    rules: {
+      'ts/no-unsafe-assignment': 'off',
+      'ts/no-unsafe-argument': 'off',
+      'ts/no-unsafe-call': 'off',
+      'ts/no-unsafe-member-access': 'off',
+      'ts/no-unsafe-return': 'off'
+    }
+  }
+)

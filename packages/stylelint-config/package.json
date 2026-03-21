@@ -5,9 +5,7 @@
   "author": "XtraVisions",
   "license": "MIT",
   "main": "config/base.json",
-  "files": [
-    "config"
-  ],
+  "files": ["config"],
   "peerDependencies": {
     "stylelint": "catalog:"
   },

@@ -2,9 +2,9 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { interopDefault } from '../shared'
-
 import type { OptionsUnoCSS, TypedFlatConfigItem } from '../types'
+
+import { interopDefault } from '../shared'
 
 export async function createUnocssConfig(options: boolean | OptionsUnoCSS = {}): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []

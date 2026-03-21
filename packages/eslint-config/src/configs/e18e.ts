@@ -2,17 +2,15 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { interopDefault } from '../shared'
-
 import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
+
+import { interopDefault } from '../shared'
 
 interface OptionsE18e extends OptionsOverrides {
   modernization?: boolean
 }
 
-export async function createE18eConfig(
-  options: OptionsE18e = {}
-): Promise<TypedFlatConfigItem[]> {
+export async function createE18eConfig(options: OptionsE18e = {}): Promise<TypedFlatConfigItem[]> {
   const { modernization = true, overrides = {} } = options
   const pluginE18e = await interopDefault(import('@e18e/eslint-plugin'))
   const configs = pluginE18e.configs as Record<string, any>

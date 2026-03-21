@@ -2,10 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import type { ConfigNames, RuleOptions } from './typesgen'
 import type { ParserOptions } from '@typescript-eslint/parser'
 import type { Linter } from 'eslint'
 import type { FlatConfigComposer } from 'eslint-flat-config-utils'
+import type { ConfigNames, RuleOptions } from './typesgen'
 
 interface PrettierRulessRequired {
   /**
@@ -329,4 +329,4 @@ export interface UserOptions {
   e18e?: boolean | { modernization?: boolean; overrides?: TypedFlatConfigItem['rules'] }
 }
 
-export type { FlatConfigComposer, ConfigNames }
+export type { ConfigNames, FlatConfigComposer }

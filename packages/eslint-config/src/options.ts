@@ -105,7 +105,7 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
 
   if (typeof opts.prettier === 'object') {
     const prettierConfig = await loadPrettierConfig(opts.cwd)
-    Object.assign(opts.prettier!.rules!, prettierConfig)
+    Object.assign(opts.prettier.rules!, prettierConfig)
   }
 
   //javascript

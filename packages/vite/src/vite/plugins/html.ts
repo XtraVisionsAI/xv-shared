@@ -1,7 +1,7 @@
-import { merge } from 'lodash-es'
-import { createHtmlPlugin } from 'vite-plugin-html'
-
 import type { HtmlTagDescriptor, Plugin } from 'vite'
+import { merge } from 'lodash-es'
+
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 interface HtmlOptions {
   minify: boolean

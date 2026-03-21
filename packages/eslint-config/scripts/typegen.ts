@@ -2,10 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import fs from 'node:fs/promises'
+import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 
 import { builtinRules } from 'eslint/use-at-your-own-risk'
-import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
+import fs from 'node:fs/promises'
 
 import { createCommentsConfig } from '../src/configs/comments'
 import { createFormatterConfig } from '../src/configs/formatter'
@@ -23,14 +23,14 @@ import { createUnocssConfig } from '../src/configs/unocss'
 import { createVueConfig } from '../src/configs/vue'
 
 const configs = await Promise.all([
-  {
+  Promise.resolve({
     plugins: {
       '': {
         rules: Object.fromEntries(builtinRules.entries())
       }
     },
     name: undefined
-  },
+  }),
   createCommentsConfig(),
   createFormatterConfig(),
   createIgnoresConfig(),

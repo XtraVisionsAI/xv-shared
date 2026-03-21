@@ -1,8 +1,8 @@
-import { merge } from 'lodash-es'
-import VueRouter from 'unplugin-vue-router/vite'
-
 import type { Options } from 'unplugin-vue-router'
 import type { Plugin } from 'vite'
+
+import { merge } from 'lodash-es'
+import VueRouter from 'unplugin-vue-router/vite'
 
 interface AutoRouterOptions extends Omit<Options, 'dts'> {
   dts?: string
@@ -17,4 +17,4 @@ function configAutoRouterPlugin(opt?: AutoRouterOptions) {
   return VueRouter(merge(defaultOpt, restOpt)) as Plugin
 }
 
-export { configAutoRouterPlugin, type AutoRouterOptions }
+export { type AutoRouterOptions, configAutoRouterPlugin }

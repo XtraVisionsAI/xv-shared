@@ -1,7 +1,7 @@
-import { merge } from 'lodash-es'
-import AutoImport from 'unplugin-auto-import/vite'
-
 import type { Options } from 'unplugin-auto-import/types'
+import { merge } from 'lodash-es'
+
+import AutoImport from 'unplugin-auto-import/vite'
 
 interface AutoImportOptions extends Omit<Options, 'dts'> {
   dts?: string
@@ -9,12 +9,7 @@ interface AutoImportOptions extends Omit<Options, 'dts'> {
 
 function configAutoImportPlugin(opt?: AutoImportOptions) {
   const defaultOpt: Options = {
-    include: [
-      /\.[tj]sx?$/,
-      /\.vue$/,
-      /\.vue\?vue/,
-      /\.md$/
-    ],
+    include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
     imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
     dts: opt?.dts ?? 'types/generated/auto-import.d.ts',
     eslintrc: {
@@ -28,4 +23,4 @@ function configAutoImportPlugin(opt?: AutoImportOptions) {
   return AutoImport(merge(defaultOpt, restOpt))
 }
 
-export { configAutoImportPlugin, type AutoImportOptions }
+export { type AutoImportOptions, configAutoImportPlugin }

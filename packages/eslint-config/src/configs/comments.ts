@@ -2,9 +2,9 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { interopDefault } from '../shared'
-
 import type { TypedFlatConfigItem } from '../types'
+
+import { interopDefault } from '../shared'
 
 export async function createCommentsConfig(): Promise<TypedFlatConfigItem[]> {
   const pluginComments = await interopDefault(import('eslint-plugin-eslint-comments'))

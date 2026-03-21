@@ -4,10 +4,10 @@
 
 import process from 'node:process'
 
-import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs'
-import { interopDefault, renamePluginsInRules, toArray } from '../shared'
-
 import type { OptionsTypeScript, TypedFlatConfigItem } from '../types'
+import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs'
+
+import { interopDefault, renamePluginsInRules, toArray } from '../shared'
 
 export async function createTsRules(): Promise<TypedFlatConfigItem['rules']> {
   const pluginTs = await interopDefault(import('@typescript-eslint/eslint-plugin'))

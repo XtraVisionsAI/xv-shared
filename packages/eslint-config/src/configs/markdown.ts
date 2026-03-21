@@ -2,10 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs'
-import { interopDefault, mergeProcessors, processorPassThrough } from '../shared'
-
 import type { OptionsMarkdown, TypedFlatConfigItem } from '../types'
+import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs'
+
+import { interopDefault, mergeProcessors, processorPassThrough } from '../shared'
 
 export async function createMarkdownConfig(options: boolean | OptionsMarkdown = {}): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []

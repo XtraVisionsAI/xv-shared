@@ -2,16 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import {
-  GLOB_HTML,
-  GLOB_JSON,
-  GLOB_JSON5,
-  GLOB_JSONC,
-  GLOB_MARKDOWN
-} from '../globs'
-import { interopDefault } from '../shared'
-
 import type { OptionsPrettier, PrettierParser, PrettierRules, TypedFlatConfigItem } from '../types'
+import { GLOB_HTML, GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_MARKDOWN } from '../globs'
+
+import { interopDefault } from '../shared'
 
 const parserPlain = {
   meta: {

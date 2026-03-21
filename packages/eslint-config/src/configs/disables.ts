@@ -2,9 +2,9 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
-
 import type { TypedFlatConfigItem } from '../types'
+
+import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 
 export async function createDisablesConfig(): Promise<TypedFlatConfigItem[]> {
   return [
@@ -36,10 +36,7 @@ export async function createDisablesConfig(): Promise<TypedFlatConfigItem[]> {
     },
     {
       name: '@xv-shared/eslint-config/disables/config-files',
-      files: [
-        `**/*.config.${GLOB_SRC_EXT}`,
-        `**/*.config.*.${GLOB_SRC_EXT}`
-      ],
+      files: [`**/*.config.${GLOB_SRC_EXT}`, `**/*.config.*.${GLOB_SRC_EXT}`],
       rules: {
         'no-console': 'off',
         'ts/explicit-function-return-type': 'off',

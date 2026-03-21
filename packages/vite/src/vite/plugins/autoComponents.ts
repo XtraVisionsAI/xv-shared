@@ -1,9 +1,9 @@
+import type { ComponentResolver, Options } from 'unplugin-vue-components/types'
 import { merge } from 'lodash-es'
 import IconsResolver from 'unplugin-icons/resolver'
 import { NaiveUiResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
 
-import type { ComponentResolver, Options } from 'unplugin-vue-components/types'
+import Components from 'unplugin-vue-components/vite'
 
 // 新增可配置项接口（覆盖 Options 中需要定制的字段）
 interface AutoComponentsOptions extends Omit<Options, 'dirs' | 'dts' | 'resolvers'> {
@@ -15,12 +15,7 @@ interface AutoComponentsOptions extends Omit<Options, 'dirs' | 'dts' | 'resolver
 function configAutoComponentsPlugin(opt?: AutoComponentsOptions) {
   const defaultOpt: Options = {
     dirs: opt?.dirs ?? ['src/**/components'],
-    resolvers: [
-      NaiveUiResolver(),
-      VueUseComponentsResolver(),
-      IconsResolver(),
-      ...(opt?.resolvers ?? []),
-    ],
+    resolvers: [NaiveUiResolver(), VueUseComponentsResolver(), IconsResolver(), ...(opt?.resolvers ?? [])],
     extensions: ['vue', 'tsx'],
     dts: opt?.dts ?? 'types/generated/auto-components.d.ts',
     deep: true,
@@ -31,4 +26,4 @@ function configAutoComponentsPlugin(opt?: AutoComponentsOptions) {
   return Components(merge(defaultOpt, restOpt))
 }
 
-export { configAutoComponentsPlugin, type AutoComponentsOptions }
+export { type AutoComponentsOptions, configAutoComponentsPlugin }

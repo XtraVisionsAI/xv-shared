@@ -2,9 +2,9 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { interopDefault } from '../shared'
-
 import type { TypedFlatConfigItem } from '../types'
+
+import { interopDefault } from '../shared'
 
 export async function createJsDocConfig(): Promise<TypedFlatConfigItem[]> {
   const pluginJsdoc = await interopDefault(import('eslint-plugin-jsdoc'))
