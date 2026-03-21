@@ -61,7 +61,7 @@ export default async function defineConfig(
 
   const userResolved = await Promise.all(userConfigs)
 
-  const configs = [
+  const configs: TypedFlatConfigItem[] = [
     //basic
     ...ignores,
     ...javascript,
