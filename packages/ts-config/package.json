@@ -4,7 +4,16 @@
   "description": "Shared TypeScript configuration for XtraVisions projects",
   "author": "XtraVisions",
   "license": "MIT",
-  "files": ["base.json", "dev.json", "node.json"],
+  "files": [
+    "base.json",
+    "dev.json",
+    "node.json"
+  ],
+  "exports": {
+    "./base.json": "./base.json",
+    "./dev.json": "./dev.json",
+    "./node.json": "./node.json"
+  },
   "peerDependencies": {
     "typescript": ">=5.0"
   },

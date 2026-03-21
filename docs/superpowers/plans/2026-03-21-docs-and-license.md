@@ -152,11 +152,7 @@ README 风格参考 antfu/eslint-config + UnoCSS：简洁专业，无过多 emoj
 
 Shared frontend tooling configurations for [XtraVisions](https://github.com/XtraVisionsAI) projects.
 
-[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
-[![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config)
-[![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite)
-[![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config)
-[![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
+[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
 
 ## Packages
 
@@ -173,6 +169,7 @@ Shared frontend tooling configurations for [XtraVisions](https://github.com/Xtra
 
 ```bash
 pnpm add -D @xv-shared/eslint-config
+```
 ````
 
 ```js
@@ -193,7 +190,9 @@ pnpm add -D @xv-shared/vite
 import { createVitePlugins } from '@xv-shared/vite'
 
 export default defineConfig({
-  plugins: createVitePlugins({ /* options */ }),
+  plugins: createVitePlugins({
+    /* options */
+  })
 })
 ```
 
@@ -260,11 +259,7 @@ git commit -m "docs: add English README"
 
 [XtraVisions](https://github.com/XtraVisionsAI) 项目的前端工具链共享配置集合。
 
-[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
-[![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config)
-[![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite)
-[![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config)
-[![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
+[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
 
 ## 包列表
 
@@ -281,6 +276,7 @@ git commit -m "docs: add English README"
 
 ```bash
 pnpm add -D @xv-shared/eslint-config
+```
 ````
 
 ```js
@@ -301,7 +297,9 @@ pnpm add -D @xv-shared/vite
 import { createVitePlugins } from '@xv-shared/vite'
 
 export default defineConfig({
-  plugins: createVitePlugins({ /* 选项 */ }),
+  plugins: createVitePlugins({
+    /* 选项 */
+  })
 })
 ```
 

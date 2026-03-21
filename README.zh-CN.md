@@ -34,14 +34,14 @@ export default defineConfig()
 
 ```js
 export default defineConfig({
-  typescript: true,         // 启用 TypeScript 规则（可自动检测）
-  vue: true,                // 启用 Vue 规则（可自动检测）
+  typescript: true, // 启用 TypeScript 规则（可自动检测）
+  vue: true, // 启用 Vue 规则（可自动检测）
   unocss: { attributify: true, strict: false },
   prettier: {
     rules: { printWidth: 120, semi: false, singleQuote: true }
   },
-  regexp: false,            // 启用 regexp 规则
-  e18e: false               // 启用 e18e 性能规则
+  regexp: false, // 启用 regexp 规则
+  e18e: false // 启用 e18e 性能规则
 })
 ```
 
@@ -57,40 +57,43 @@ import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
 export default defineConfig(({ mode }) => ({
-  plugins: createVitePlugins({
-    // 所有选项均为可选，省略则使用默认值
-    autoImport: {
-      // unplugin-auto-import：默认自动导入 vue/vue-router/pinia/@vueuse/core
-      dts: 'types/generated/auto-import.d.ts'
+  plugins: createVitePlugins(
+    {
+      // 所有选项均为可选，省略则使用默认值
+      autoImport: {
+        // unplugin-auto-import：默认自动导入 vue/vue-router/pinia/@vueuse/core
+        dts: 'types/generated/auto-import.d.ts'
+      },
+      autoComponents: {
+        // unplugin-vue-components：默认扫描 src/**/components
+        // 内置 NaiveUI、VueUse、Icons resolver
+        dts: 'types/generated/auto-components.d.ts'
+      },
+      autoRouter: {
+        // unplugin-vue-router：基于文件的路由
+        dts: 'types/generated/typed-router.d.ts'
+      },
+      autoLayout: {
+        // vite-plugin-vue-meta-layouts
+        skipTopLevelRouteLayout: true
+      },
+      html: {
+        // vite-plugin-html
+        entry: '/src/main.ts',
+        template: 'index.html',
+        minify: true
+      },
+      icon: {
+        // unplugin-icons：默认从 src/assets/svg-icons 加载 SVG 作为 local 图标集
+        iconDir: 'src/assets/svg-icons'
+      },
+      css: {
+        // unocss/vite：始终包含 transformerDirectives 和 transformerVariantGroup
+        // 如需传入额外的 UnoCSS vite 插件选项可在此配置
+      }
     },
-    autoComponents: {
-      // unplugin-vue-components：默认扫描 src/**/components
-      // 内置 NaiveUI、VueUse、Icons resolver
-      dts: 'types/generated/auto-components.d.ts'
-    },
-    autoRouter: {
-      // unplugin-vue-router：基于文件的路由
-      dts: 'types/generated/typed-router.d.ts'
-    },
-    autoLayout: {
-      // vite-plugin-vue-meta-layouts
-      skipTopLevelRouteLayout: true
-    },
-    html: {
-      // vite-plugin-html
-      entry: '/src/main.ts',
-      template: 'index.html',
-      minify: true
-    },
-    icon: {
-      // unplugin-icons：默认从 src/assets/svg-icons 加载 SVG 作为 local 图标集
-      iconDir: 'src/assets/svg-icons'
-    },
-    css: {
-      // unocss/vite：始终包含 transformerDirectives 和 transformerVariantGroup
-      // 如需传入额外的 UnoCSS vite 插件选项可在此配置
-    }
-  }, mode)
+    mode
+  )
 }))
 ```
 

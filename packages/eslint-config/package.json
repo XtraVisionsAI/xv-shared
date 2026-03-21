@@ -15,7 +15,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pnpm typegen && tsup --format esm,cjs --clean --dts",
     "typegen": "esno scripts/typegen.ts",

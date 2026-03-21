@@ -34,14 +34,14 @@ All options are optional. Pass an object to customize:
 
 ```js
 export default defineConfig({
-  typescript: true,         // enable TypeScript rules (auto-detected)
-  vue: true,                // enable Vue rules (auto-detected)
+  typescript: true, // enable TypeScript rules (auto-detected)
+  vue: true, // enable Vue rules (auto-detected)
   unocss: { attributify: true, strict: false },
   prettier: {
     rules: { printWidth: 120, semi: false, singleQuote: true }
   },
-  regexp: false,            // enable regexp rules
-  e18e: false               // enable e18e perf rules
+  regexp: false, // enable regexp rules
+  e18e: false // enable e18e perf rules
 })
 ```
 
@@ -57,40 +57,43 @@ import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
 export default defineConfig(({ mode }) => ({
-  plugins: createVitePlugins({
-    // All options are optional — omit any section to use defaults
-    autoImport: {
-      // unplugin-auto-import: default imports vue/vue-router/pinia/@vueuse/core
-      dts: 'types/generated/auto-import.d.ts'
+  plugins: createVitePlugins(
+    {
+      // All options are optional — omit any section to use defaults
+      autoImport: {
+        // unplugin-auto-import: default imports vue/vue-router/pinia/@vueuse/core
+        dts: 'types/generated/auto-import.d.ts'
+      },
+      autoComponents: {
+        // unplugin-vue-components: default scans src/**/components
+        // includes NaiveUI, VueUse, Icons resolvers
+        dts: 'types/generated/auto-components.d.ts'
+      },
+      autoRouter: {
+        // unplugin-vue-router: file-based routing
+        dts: 'types/generated/typed-router.d.ts'
+      },
+      autoLayout: {
+        // vite-plugin-vue-meta-layouts
+        skipTopLevelRouteLayout: true
+      },
+      html: {
+        // vite-plugin-html
+        entry: '/src/main.ts',
+        template: 'index.html',
+        minify: true
+      },
+      icon: {
+        // unplugin-icons: default loads SVGs from src/assets/svg-icons as 'local' collection
+        iconDir: 'src/assets/svg-icons'
+      },
+      css: {
+        // unocss/vite: transformerDirectives and transformerVariantGroup are always included
+        // pass additional UnoCSS vite plugin options here if needed
+      }
     },
-    autoComponents: {
-      // unplugin-vue-components: default scans src/**/components
-      // includes NaiveUI, VueUse, Icons resolvers
-      dts: 'types/generated/auto-components.d.ts'
-    },
-    autoRouter: {
-      // unplugin-vue-router: file-based routing
-      dts: 'types/generated/typed-router.d.ts'
-    },
-    autoLayout: {
-      // vite-plugin-vue-meta-layouts
-      skipTopLevelRouteLayout: true
-    },
-    html: {
-      // vite-plugin-html
-      entry: '/src/main.ts',
-      template: 'index.html',
-      minify: true
-    },
-    icon: {
-      // unplugin-icons: default loads SVGs from src/assets/svg-icons as 'local' collection
-      iconDir: 'src/assets/svg-icons'
-    },
-    css: {
-      // unocss/vite: transformerDirectives and transformerVariantGroup are always included
-      // pass additional UnoCSS vite plugin options here if needed
-    }
-  }, mode)
+    mode
+  )
 }))
 ```
 
