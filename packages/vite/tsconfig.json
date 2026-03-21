@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "../../packages/ts-config/base.json",
+  "extends": "../ts-config/base.json",
   "compilerOptions": {
     "noUnusedLocals": false,
     "types": ["node"]
