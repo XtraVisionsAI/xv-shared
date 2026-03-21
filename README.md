@@ -1,6 +1,6 @@
 # xv-shared
 
-[中文文档](./README.zh-CN.md)
+**English** | [中文文档](./README.zh-CN.md)
 
 Shared frontend tooling configurations for [XtraVisions](https://github.com/XtraVisionsAI) projects.
 

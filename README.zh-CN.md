@@ -1,6 +1,6 @@
 # xv-shared
 
-[English](./README.md)
+[English](./README.md) | **中文文档**
 
 [XtraVisions](https://github.com/XtraVisionsAI) 项目的前端工具链共享配置集合。
 
