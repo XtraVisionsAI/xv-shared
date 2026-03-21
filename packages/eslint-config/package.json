@@ -2,9 +2,9 @@
   "name": "@xv-shared/eslint-config",
   "type": "module",
   "version": "1.0.0",
-  "description": "shared config for eslint",
+  "description": "Opinionated ESLint flat config for XtraVisions Vue 3 projects",
   "author": "XtraVisions",
-  "license": "EULA",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

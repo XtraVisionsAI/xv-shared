@@ -1,9 +1,9 @@
 {
   "name": "@xv-shared/stylelint-config",
   "version": "1.0.0",
-  "description": "shared config for stylelint",
+  "description": "Opinionated Stylelint config for XtraVisions Vue 3 projects",
   "author": "XtraVisions",
-  "license": "EULA",
+  "license": "MIT",
   "main": "config/base.json",
   "files": [
     "config"

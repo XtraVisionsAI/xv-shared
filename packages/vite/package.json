@@ -2,9 +2,9 @@
   "name": "@xv-shared/vite",
   "type": "module",
   "version": "1.0.0",
-  "description": "shared vite configuration and plugins",
+  "description": "Shared Vite configuration and plugins for XtraVisions frontend projects",
   "author": "XtraVisions",
-  "license": "EULA",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
