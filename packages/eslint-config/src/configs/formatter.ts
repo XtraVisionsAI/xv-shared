@@ -2,7 +2,7 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import type { OptionsPrettier, PrettierParser, PrettierRules, TypedFlatConfigItem } from '../types'
+import type { OptionsPrettier, PrettierParser, PrettierRules, StylisticConfig, TypedFlatConfigItem } from '../types'
 import { GLOB_HTML, GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_MARKDOWN } from '../globs'
 
 import { interopDefault } from '../shared'
@@ -28,13 +28,28 @@ const parserPlain = {
   })
 }
 
-export async function createFormatterConfig(options: boolean | OptionsPrettier = {}): Promise<TypedFlatConfigItem[]> {
+export async function createFormatterConfig(
+  options: boolean | OptionsPrettier = {},
+  stylisticConfig?: StylisticConfig
+): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []
 
   const opts = options as OptionsPrettier
 
   const { html = true, json = true, markdown = true } = opts.formatters || {}
-  const prettierRules = opts.rules || {}
+
+  // Derive Prettier options from stylisticConfig to keep formatting consistent with ESLint stylistic checks
+  const prettierRules: PrettierRules = {
+    ...(opts.rules || {}),
+    ...(stylisticConfig
+      ? {
+          tabWidth: typeof stylisticConfig.indent === 'number' ? stylisticConfig.indent : 2,
+          useTabs: stylisticConfig.indent === 'tab',
+          semi: stylisticConfig.semi ?? false,
+          singleQuote: (stylisticConfig.quotes ?? 'single') === 'single'
+        }
+      : {})
+  }
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
   const recommendedPrettier = await interopDefault(import('eslint-plugin-prettier/recommended'))
