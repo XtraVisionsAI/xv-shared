@@ -25,11 +25,12 @@ import { createNodeConfig } from './configs/node'
 import { createPerfectionistConfig } from './configs/perfectionist'
 import { createPnpmConfig } from './configs/pnpm'
 import { createRegexpConfig } from './configs/regexp'
+import { createStylisticConfig } from './configs/stylistic'
 import { createTypescriptConfig } from './configs/typescript'
 import { createUnicornConfig } from './configs/unicorn'
 import { createUnocssConfig } from './configs/unocss'
 import { createVueConfig } from './configs/vue'
-import { createOptions } from './options'
+import { DEFAULT_STYLISTIC_CONFIG, createOptions } from './options'
 import { composer, defaultPluginRenaming } from './shared'
 
 export default async function defineConfig(
@@ -40,8 +41,13 @@ export default async function defineConfig(
 
   const tsOverride = opts.typescript ? (opts.typescript as OptionsTypeScript).overrides : {}
 
+  // Extract shared stylisticConfig for passing to configs that need it
+  const stylisticOpts = opts.stylistic ?? true
+  const stylisticConfig =
+    stylisticOpts === false ? undefined : typeof stylisticOpts === 'object' ? stylisticOpts : DEFAULT_STYLISTIC_CONFIG
+
   const comments = await createCommentsConfig()
-  const formatter = await createFormatterConfig(opts.prettier)
+  const formatter = await createFormatterConfig(opts.prettier, stylisticConfig)
   const ignores = await createIgnoresConfig(opts.ignores, opts.flatignore)
   const imports = await createImportsConfig()
   const javascript = await createJavascriptConfig(opts.javascript)
@@ -50,10 +56,11 @@ export default async function defineConfig(
   const node = await createNodeConfig()
   const markdown = await createMarkdownConfig(opts.markdown)
   const perfectionist = await createPerfectionistConfig()
+  const stylistic = await createStylisticConfig(stylisticOpts)
   const typescript = await createTypescriptConfig(opts.typescript)
   const unicorn = await createUnicornConfig()
   const unocss = await createUnocssConfig(opts.unocss)
-  const vue = await createVueConfig(opts.vue, tsOverride)
+  const vue = await createVueConfig(opts.vue, tsOverride, stylisticConfig)
   const regexp = opts.regexp ? await createRegexpConfig(opts.regexp === true ? {} : opts.regexp) : []
   const e18e = opts.e18e ? await createE18eConfig(opts.e18e === true ? {} : opts.e18e) : []
   const pnpm = await createPnpmConfig()
@@ -71,6 +78,8 @@ export default async function defineConfig(
     ...imports,
     ...unicorn,
     ...perfectionist,
+    //stylistic — after basic rules, before language-specific rules
+    ...stylistic,
     //optional
     ...typescript,
     ...unocss,
