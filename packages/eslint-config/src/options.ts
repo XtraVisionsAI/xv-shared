@@ -6,7 +6,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
-import type { PrettierRules, UserOptions } from './types'
+import type { PrettierRules, StylisticConfig, UserOptions } from './types'
 
 const DEFAULT_PRETTIER_RULES: PrettierRules = {
   printWidth: 120,
@@ -30,6 +30,13 @@ const DEFAULT_PRETTIER_FORMATTERS = {
   html: true,
   json: true,
   markdown: true
+}
+
+export const DEFAULT_STYLISTIC_CONFIG: StylisticConfig = {
+  indent: 2,
+  quotes: 'single',
+  semi: false,
+  jsx: true
 }
 
 async function loadPrettierConfig(cwd: string) {
@@ -60,7 +67,8 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     markdown: {},
     jsonc: {},
     regexp: false,
-    e18e: false
+    e18e: false,
+    stylistic: { ...DEFAULT_STYLISTIC_CONFIG }
   }
 
   const {
@@ -75,7 +83,8 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     markdown = true,
     jsonc = true,
     regexp = false,
-    e18e = false
+    e18e = false,
+    stylistic
   } = options
 
   //cwd
@@ -106,7 +115,24 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
   if (typeof opts.prettier === 'object') {
     const prettierConfig = await loadPrettierConfig(opts.cwd)
     Object.assign(opts.prettier.rules!, prettierConfig)
+
+    // Sync .prettierrc values back to stylistic so ESLint checks stay consistent with Prettier output
+    if (typeof opts.stylistic === 'object') {
+      const rc = prettierConfig as PrettierRules
+      if (rc.tabWidth !== undefined) opts.stylistic.indent = rc.useTabs ? 'tab' : rc.tabWidth
+      if (rc.semi !== undefined) opts.stylistic.semi = rc.semi
+      if (rc.singleQuote !== undefined) opts.stylistic.quotes = rc.singleQuote ? 'single' : 'double'
+    }
   }
+
+  //stylistic
+  if (stylistic === false) {
+    opts.stylistic = false
+  } else if (typeof stylistic === 'object') {
+    opts.stylistic = { ...DEFAULT_STYLISTIC_CONFIG, ...stylistic }
+  }
+  // stylistic === true or undefined: keep DEFAULT_STYLISTIC_CONFIG
+  // When prettier: false, stylistic remains enabled (provides formatting via eslint --fix)
 
   //javascript
   if (typeof javascript === 'object') {
