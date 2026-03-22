@@ -17,6 +17,7 @@ import { createJSONConfig } from '../src/configs/jsonc'
 import { createMarkdownConfig } from '../src/configs/markdown'
 import { createNodeConfig } from '../src/configs/node'
 import { createPerfectionistConfig } from '../src/configs/perfectionist'
+import { createStylisticConfig } from '../src/configs/stylistic'
 import { createTypescriptConfig } from '../src/configs/typescript'
 import { createUnicornConfig } from '../src/configs/unicorn'
 import { createUnocssConfig } from '../src/configs/unocss'
@@ -41,6 +42,7 @@ const configs = await Promise.all([
   createNodeConfig(),
   createMarkdownConfig(),
   createPerfectionistConfig(),
+  createStylisticConfig(),
   createTypescriptConfig(),
   createUnicornConfig(),
   createUnocssConfig(),
