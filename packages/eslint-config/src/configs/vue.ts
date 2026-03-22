@@ -2,7 +2,7 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import type { OptionsVue, TypedFlatConfigItem } from '../types'
+import type { OptionsVue, StylisticConfig, TypedFlatConfigItem } from '../types'
 import { GLOB_VUE } from '../globs'
 
 import { interopDefault } from '../shared'
@@ -11,7 +11,8 @@ import { createTsRules } from './typescript'
 
 export async function createVueConfig(
   options: boolean | OptionsVue = {},
-  tsOverrides: TypedFlatConfigItem['rules'] = {}
+  tsOverrides: TypedFlatConfigItem['rules'] = {},
+  stylisticConfig?: StylisticConfig
 ): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []
 
@@ -108,7 +109,7 @@ export async function createVueConfig(
 
         'vue/eqeqeq': ['error', 'smart'],
 
-        'vue/html-indent': ['error', 2],
+        'vue/html-indent': ['error', stylisticConfig?.indent ?? 2],
         'vue/html-quotes': ['error', 'double'],
         'vue/html-closing-bracket-newline': 'off',
         'vue/max-attributes-per-line': 'off',
@@ -141,10 +142,7 @@ export async function createVueConfig(
         'vue/require-prop-types': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
-        //styllistic
-        'vue/array-bracket-spacing': ['error', 'never'],
-        'vue/arrow-spacing': ['error', { after: true, before: true }],
-        'vue/block-spacing': ['error', 'always'],
+        // Vue template-specific stylistic rules (not covered by @stylistic/eslint-plugin)
         'vue/block-tag-newline': [
           'error',
           {
@@ -152,10 +150,6 @@ export async function createVueConfig(
             singleline: 'always'
           }
         ],
-        'vue/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-        'vue/comma-dangle': ['error', 'always-multiline'],
-        'vue/comma-spacing': ['error', { after: true, before: false }],
-        'vue/comma-style': ['error', 'last'],
         'vue/html-comment-content-spacing': [
           'error',
           'always',
@@ -163,16 +157,15 @@ export async function createVueConfig(
             exceptions: ['-']
           }
         ],
-        'vue/key-spacing': ['error', { afterColon: true, beforeColon: false }],
-        'vue/keyword-spacing': ['error', { after: true, before: true }],
-        'vue/object-curly-newline': 'off',
-        'vue/object-curly-spacing': ['error', 'always'],
-        'vue/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-        'vue/operator-linebreak': ['error', 'before'],
         'vue/padding-line-between-blocks': ['error', 'always'],
-        'vue/quote-props': ['error', 'consistent-as-needed'],
-        'vue/space-in-parens': ['error', 'never'],
-        'vue/template-curly-spacing': 'error',
+
+        // JS expression stylistic rules inside Vue templates are handled by @stylistic/eslint-plugin
+        // The following rules are intentionally removed:
+        // vue/array-bracket-spacing, vue/arrow-spacing, vue/block-spacing, vue/brace-style,
+        // vue/comma-dangle, vue/comma-spacing, vue/comma-style, vue/key-spacing,
+        // vue/keyword-spacing, vue/object-curly-newline, vue/object-curly-spacing,
+        // vue/object-property-newline, vue/operator-linebreak, vue/quote-props,
+        // vue/space-in-parens, vue/template-curly-spacing
 
         ...overrides
       }
