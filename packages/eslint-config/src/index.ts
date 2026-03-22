@@ -7,6 +7,7 @@ import type {
   ConfigNames,
   FlatConfigComposer,
   OptionsTypeScript,
+  StylisticConfig,
   TypedFlatConfigItem,
   UserOptions
 } from './types'
@@ -30,7 +31,7 @@ import { createTypescriptConfig } from './configs/typescript'
 import { createUnicornConfig } from './configs/unicorn'
 import { createUnocssConfig } from './configs/unocss'
 import { createVueConfig } from './configs/vue'
-import { DEFAULT_STYLISTIC_CONFIG, createOptions } from './options'
+import { createOptions } from './options'
 import { composer, defaultPluginRenaming } from './shared'
 
 export default async function defineConfig(
@@ -43,8 +44,12 @@ export default async function defineConfig(
 
   // Extract shared stylisticConfig for passing to configs that need it
   const stylisticOpts = opts.stylistic ?? true
-  const stylisticConfig =
-    stylisticOpts === false ? undefined : typeof stylisticOpts === 'object' ? stylisticOpts : DEFAULT_STYLISTIC_CONFIG
+  const stylisticConfig: StylisticConfig | undefined =
+    stylisticOpts === false
+      ? undefined
+      : typeof stylisticOpts === 'object'
+        ? stylisticOpts
+        : { indent: 2, quotes: 'single', semi: false, jsx: true }
 
   const comments = await createCommentsConfig()
   const formatter = await createFormatterConfig(opts.prettier, stylisticConfig)
@@ -69,7 +74,7 @@ export default async function defineConfig(
   const userResolved = await Promise.all(userConfigs.map((c) => Promise.resolve(c)))
 
   const configs: TypedFlatConfigItem[] = [
-    //basic
+    // basic
     ...ignores,
     ...javascript,
     ...comments,
@@ -78,9 +83,9 @@ export default async function defineConfig(
     ...imports,
     ...unicorn,
     ...perfectionist,
-    //stylistic — after basic rules, before language-specific rules
+    // stylistic — after basic rules, before language-specific rules
     ...stylistic,
-    //optional
+    // optional
     ...typescript,
     ...unocss,
     ...vue,
@@ -88,12 +93,12 @@ export default async function defineConfig(
     ...e18e,
     ...json,
     ...markdown,
-    //userdefined
+    // userdefined
     ...userResolved,
-    //always-on
+    // always-on
     ...pnpm,
     ...disables,
-    //formatter
+    // formatter
     ...formatter
   ]
 

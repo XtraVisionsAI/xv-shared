@@ -87,22 +87,22 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
     stylistic
   } = options
 
-  //cwd
+  // cwd
   if (cwd) {
     opts.cwd = cwd
   }
 
-  //ignores
+  // ignores
   if (ignores?.length) {
     opts.ignores = [...opts.ignores, ...ignores]
   }
 
-  //flatignores
+  // flatignores
   if (typeof flatignore === 'object') {
     opts.flatignore = [...new Set([...opts.flatignore, ...flatignore])]
   }
 
-  //prettier
+  // prettier
   if (typeof prettier === 'object') {
     opts.prettier = {
       rules: { ...DEFAULT_PRETTIER_RULES, ...prettier.rules },
@@ -118,14 +118,14 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
 
     // Sync .prettierrc values back to stylistic so ESLint checks stay consistent with Prettier output
     if (typeof opts.stylistic === 'object') {
-      const rc = prettierConfig as PrettierRules
+      const rc = prettierConfig
       if (rc.tabWidth !== undefined) opts.stylistic.indent = rc.useTabs ? 'tab' : rc.tabWidth
       if (rc.semi !== undefined) opts.stylistic.semi = rc.semi
       if (rc.singleQuote !== undefined) opts.stylistic.quotes = rc.singleQuote ? 'single' : 'double'
     }
   }
 
-  //stylistic
+  // stylistic
   if (stylistic === false) {
     opts.stylistic = false
   } else if (typeof stylistic === 'object') {
@@ -134,54 +134,54 @@ export async function createOptions(options: UserOptions = {}): Promise<UserOpti
   // stylistic === true or undefined: keep DEFAULT_STYLISTIC_CONFIG
   // When prettier: false, stylistic remains enabled (provides formatting via eslint --fix)
 
-  //javascript
+  // javascript
   if (typeof javascript === 'object') {
     opts.javascript = javascript
   }
 
-  //typescript
+  // typescript
   if (typeof typescript === 'object') {
     Object.assign(opts.typescript, typescript)
   } else if (typescript === false) {
     opts.typescript = typescript
   }
 
-  //unocss
+  // unocss
   if (typeof unocss === 'object') {
     Object.assign(opts.unocss, unocss)
   } else if (unocss === false) {
     opts.unocss = unocss
   }
 
-  //vue
+  // vue
   if (typeof vue === 'object') {
     Object.assign(opts.vue, vue)
   } else if (vue === false) {
     opts.vue = vue
   }
 
-  //markdown
+  // markdown
   if (typeof markdown === 'object') {
     Object.assign(opts.markdown, markdown)
   } else if (markdown === false) {
     opts.markdown = markdown
   }
 
-  //jsonc
+  // jsonc
   if (typeof jsonc === 'object') {
     Object.assign(opts.jsonc, jsonc)
   } else if (jsonc === false) {
     opts.jsonc = jsonc
   }
 
-  //regexp
+  // regexp
   if (typeof regexp === 'object') {
     opts.regexp = Object.assign({}, regexp)
   } else if (regexp === true) {
     opts.regexp = {}
   }
 
-  //e18e
+  // e18e
   if (typeof e18e === 'object') {
     opts.e18e = Object.assign({}, e18e)
   } else if (e18e === true) {

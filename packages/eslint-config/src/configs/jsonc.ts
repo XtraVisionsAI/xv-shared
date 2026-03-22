@@ -55,7 +55,7 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
-        //stylelistic — intentionally omitted: JSON formatting is delegated to Prettier (formatter.ts).
+        // stylelistic — intentionally omitted: JSON formatting is delegated to Prettier (formatter.ts).
         // Only semantic validation and organization rules are enforced here.
         // 'jsonc/array-bracket-spacing': ['error', 'never'],
         // 'jsonc/comma-dangle': ['error', 'never'],

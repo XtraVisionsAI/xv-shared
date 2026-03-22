@@ -6,13 +6,16 @@ import type { StylisticConfig, TypedFlatConfigItem } from '../types'
 
 import { interopDefault } from '../shared'
 
-export async function createStylisticConfig(
-  options: boolean | StylisticConfig = {}
-): Promise<TypedFlatConfigItem[]> {
+export async function createStylisticConfig(options: boolean | StylisticConfig = {}): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []
 
-  const { indent = 2, quotes = 'single', semi = false, jsx = true, overrides = {} } =
-    typeof options === 'object' ? options : {}
+  const {
+    indent = 2,
+    quotes = 'single',
+    semi = false,
+    jsx = true,
+    overrides = {}
+  } = typeof options === 'object' ? options : {}
 
   const stylistic = await interopDefault(import('@stylistic/eslint-plugin'))
 
