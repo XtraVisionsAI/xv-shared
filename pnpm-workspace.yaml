@@ -42,6 +42,7 @@ catalog:
   'lodash-es': '^4.17.21'
   'rollup-plugin-visualizer': '^5.14.0'
   # eslint-config dependencies
+  '@stylistic/eslint-plugin': '^3.1.0'
   '@types/eslint': '^9.6.1'
   '@types/eslint-config-prettier': '^6.11.3'
   '@typescript-eslint/eslint-plugin': '^8.26.1'
