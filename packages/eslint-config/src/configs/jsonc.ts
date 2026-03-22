@@ -55,17 +55,18 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
-        //stylelistic
-        'jsonc/array-bracket-spacing': ['error', 'never'],
-        'jsonc/comma-dangle': ['error', 'never'],
-        'jsonc/comma-style': ['error', 'last'],
-        // 'jsonc/indent': ['error', prettierIndent], // use prettier to style
-        'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
-        'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
-        'jsonc/object-curly-spacing': ['error', 'always'],
-        'jsonc/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-        'jsonc/quote-props': 'error',
-        'jsonc/quotes': 'error',
+        //stylelistic — intentionally omitted: JSON formatting is delegated to Prettier (formatter.ts).
+        // Only semantic validation and organization rules are enforced here.
+        // 'jsonc/array-bracket-spacing': ['error', 'never'],
+        // 'jsonc/comma-dangle': ['error', 'never'],
+        // 'jsonc/comma-style': ['error', 'last'],
+        // 'jsonc/indent': ['error', prettierIndent],
+        // 'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
+        // 'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
+        // 'jsonc/object-curly-spacing': ['error', 'always'],
+        // 'jsonc/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
+        // 'jsonc/quote-props': 'error',
+        // 'jsonc/quotes': 'error',
         ...overrides
       }
     },
