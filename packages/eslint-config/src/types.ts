@@ -152,6 +152,33 @@ export interface PrettierRules extends Partial<PrettierRulessRequired> {
   parser?: LiteralUnion<PrettierParser>
 }
 
+export interface StylisticConfig {
+  /**
+   * Indentation level.
+   * @default 2
+   */
+  indent?: number | 'tab'
+  /**
+   * Quote style for strings.
+   * @default 'single'
+   */
+  quotes?: 'single' | 'double'
+  /**
+   * Whether to add semicolons at end of statements.
+   * @default false
+   */
+  semi?: boolean
+  /**
+   * Enable JSX formatting rules.
+   * @default true
+   */
+  jsx?: boolean
+  /**
+   * Override individual @stylistic rules directly.
+   */
+  overrides?: TypedFlatConfigItem['rules']
+}
+
 export interface OptionsPrettier {
   /**
    * Default prettier rules
@@ -327,6 +354,16 @@ export interface UserOptions {
    * @default false
    */
   e18e?: boolean | { modernization?: boolean; overrides?: TypedFlatConfigItem['rules'] }
+  /**
+   * Configure @stylistic/eslint-plugin rules for JS/TS/Vue style checking.
+   *
+   * When prettier is enabled (default), indent/quotes/semi are synced from
+   * prettier rules to keep ESLint checks consistent with Prettier output.
+   * When prettier: false, stylistic rules provide formatting enforcement via eslint --fix.
+   *
+   * @default true
+   */
+  stylistic?: boolean | StylisticConfig
 }
 
 export type { ConfigNames, FlatConfigComposer }
