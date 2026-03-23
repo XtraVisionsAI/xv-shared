@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+# Requires:
+# 1. @xv-shared npm Organization created at npmjs.com
+# 2. NPM_TOKEN secret set in GitHub repository settings
+# Until both are ready, this workflow will fail at the publish step.
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -37,6 +42,7 @@ jobs:
         run: pnpm build
 
       - name: Create Release Pull Request or Publish
+        id: changesets
         uses: changesets/action@v1
         with:
           publish: pnpm release
