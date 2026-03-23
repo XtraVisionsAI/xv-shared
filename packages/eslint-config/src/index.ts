@@ -57,7 +57,7 @@ export default async function defineConfig(
   const imports = await createImportsConfig()
   const javascript = await createJavascriptConfig(opts.javascript)
   const jsdoc = await createJsDocConfig()
-  const json = await createJSONConfig(opts.jsonc)
+  const json = await createJSONConfig(opts.jsonc, opts.prettier !== false)
   const node = await createNodeConfig()
   const markdown = await createMarkdownConfig(opts.markdown)
   const perfectionist = await createPerfectionistConfig()

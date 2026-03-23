@@ -7,7 +7,10 @@ import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_PACKAGE_JSON, GLOB_TS_CONFIG, G
 
 import { interopDefault } from '../shared'
 
-export async function createJSONConfig(options: boolean | OptionsOverrides = {}): Promise<TypedFlatConfigItem[]> {
+export async function createJSONConfig(
+  options: boolean | OptionsOverrides = {},
+  usePrettier = true
+): Promise<TypedFlatConfigItem[]> {
   if (options === false) return []
 
   const { files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC], overrides = {} } = options as OptionsOverrides
@@ -74,13 +77,20 @@ export async function createJSONConfig(options: boolean | OptionsOverrides = {})
       name: '@xv-shared/eslint-config/jsonc/package-json/rules',
       files: [GLOB_PACKAGE_JSON],
       rules: {
-        'jsonc/sort-array-values': [
-          'error',
-          {
-            order: { type: 'asc' },
-            pathPattern: '^files$'
-          }
-        ],
+        // sort-array-values fix expands short arrays to multi-line, conflicting with
+        // Prettier's single-line output. Disabled when Prettier is active.
+        // When prettier: false, this rule is enforced with auto-fix.
+        ...(usePrettier
+          ? {}
+          : {
+              'jsonc/sort-array-values': [
+                'error',
+                {
+                  order: { type: 'asc' },
+                  pathPattern: '.*'
+                }
+              ]
+            }),
         'jsonc/sort-keys': [
           'error',
           {

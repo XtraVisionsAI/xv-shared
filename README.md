@@ -45,6 +45,44 @@ export default defineConfig({
 })
 ```
 
+#### Using without built-in Prettier
+
+If your project manages Prettier separately, disable the built-in integration:
+
+```js
+export default defineConfig({
+  prettier: false
+})
+```
+
+When `prettier: false`, the `@stylistic/eslint-plugin` rules remain active and `eslint --fix` acts as the formatter for JS/TS/Vue files.
+
+#### Known: `eslint --fix` and `prettier --write` ordering
+
+`@xv-shared/eslint-config` enforces JSON key ordering via `jsonc/sort-keys` and `jsonc/sort-array-values`. The auto-fix for these rules may reformat arrays in a way that differs from Prettier's output (e.g. expanding a short array to multiple lines). To keep both tools in sync, always run them in this order:
+
+```bash
+pnpm lint:fix   # apply ESLint fixes (including JSON key/array sorting)
+pnpm format     # re-apply Prettier to normalise formatting
+```
+
+If you build on top of this config and want to disable the conflicting rules:
+
+```js
+export default defineConfig(
+  {
+    /* your options */
+  },
+  {
+    files: ['**/*.json'],
+    rules: {
+      'jsonc/sort-keys': 'off',
+      'jsonc/sort-array-values': 'off'
+    }
+  }
+)
+```
+
 ### Vite Config
 
 ```bash

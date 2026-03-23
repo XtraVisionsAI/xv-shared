@@ -2,3 +2,6 @@ dist
 node_modules
 pnpm-lock.yaml
 **/typesgen.d.ts
+# package.json is managed by jsonc/sort-keys — Prettier standalone handles it correctly
+# but eslint-plugin-prettier produces inconsistent results for JSON arrays
+**/package.json

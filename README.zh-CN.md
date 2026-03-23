@@ -45,6 +45,44 @@ export default defineConfig({
 })
 ```
 
+#### 不使用内置 Prettier
+
+如果项目中单独管理 Prettier，可禁用内置集成：
+
+```js
+export default defineConfig({
+  prettier: false
+})
+```
+
+`prettier: false` 时，`@stylistic/eslint-plugin` 规则仍然生效，`eslint --fix` 将作为 JS/TS/Vue 文件的格式化工具。
+
+#### 已知问题：`eslint --fix` 与 `prettier --write` 的执行顺序
+
+`@xv-shared/eslint-config` 通过 `jsonc/sort-keys` 和 `jsonc/sort-array-values` 强制 JSON 字段和数组排序。这些规则的 auto-fix 可能产生与 Prettier 输出不一致的格式（例如将短数组展开为多行）。为保持两者同步，请始终按以下顺序执行：
+
+```bash
+pnpm lint:fix   # 执行 ESLint 修复（包含 JSON 字段/数组排序）
+pnpm format     # 重新执行 Prettier 统一格式化
+```
+
+如果需要禁用冲突规则，可在配置中追加覆盖：
+
+```js
+export default defineConfig(
+  {
+    /* 你的选项 */
+  },
+  {
+    files: ['**/*.json'],
+    rules: {
+      'jsonc/sort-keys': 'off',
+      'jsonc/sort-array-values': 'off'
+    }
+  }
+)
+```
+
 ### Vite 配置
 
 ```bash
