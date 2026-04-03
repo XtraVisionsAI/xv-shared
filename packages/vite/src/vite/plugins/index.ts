@@ -4,7 +4,6 @@
 
 import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
 import type { Plugin } from 'vite'
-import type { Options as TopLevelAwaitOptions } from 'vite-plugin-top-level-await'
 import type { AutoComponentsOptions } from './autoComponents'
 import type { AutoImportOptions } from './autoImport'
 import type { AutoLayoutOptions } from './autoLayout'
@@ -16,7 +15,6 @@ import type { IconOptions } from './icons'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
-import topLevelAwait from 'vite-plugin-top-level-await'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import { configAutoComponentsPlugin } from './autoComponents'
@@ -34,7 +32,6 @@ export interface PluginOptions {
   vue?: PluginSwitch<Parameters<typeof vue>[0]>
   vueJsx?: PluginSwitch<Parameters<typeof vueJsx>[0]>
   vueSetupExtend?: boolean
-  topLevelAwait?: PluginSwitch<TopLevelAwaitOptions>
   // visualizer 默认关闭，需显式开启
   visualizer?: PluginSwitch<PluginVisualizerOptions>
 
@@ -79,17 +76,6 @@ export async function createVitePlugins(opt: PluginOptions = {}, _mode?: string)
   if (isEnabled(opt.vue)) vitePlugins.push(vue(getOptions(opt.vue)))
   if (isEnabled(opt.vueJsx)) vitePlugins.push(vueJsx(getOptions(opt.vueJsx)))
   if (opt.vueSetupExtend !== false) vitePlugins.push(vueSetupExtend())
-
-  if (isEnabled(opt.topLevelAwait)) {
-    vitePlugins.push(
-      topLevelAwait(
-        getOptions(opt.topLevelAwait) ?? {
-          promiseExportName: '__tla',
-          promiseImportName: (i: number) => `__tla_${i}`
-        }
-      )
-    )
-  }
 
   if (isEnabled(opt.autoImport)) {
     vitePlugins.push(configAutoImportPlugin(buildAutoImportOpt(opt.autoImport, routerEnabled)) as unknown as Plugin)

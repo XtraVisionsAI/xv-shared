@@ -40,7 +40,6 @@
     "unplugin-icons": "catalog:",
     "unplugin-vue-components": "catalog:",
     "vite-plugin-html": "catalog:",
-    "vite-plugin-top-level-await": "catalog:",
     "vite-plugin-vue-meta-layouts": "catalog:",
     "vite-plugin-vue-setup-extend": "catalog:"
   },
