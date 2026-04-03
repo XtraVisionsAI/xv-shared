@@ -1,0 +1,18 @@
+---
+'@xv-shared/vite': major
+---
+
+Refactor plugin system with opt-in/out controls and upgrade to Vite 8.
+
+**Breaking changes:**
+
+- `createVitePlugins` is now **async** — update call sites to `await createVitePlugins(...)`
+- All plugins now accept `false | true | Options` (PluginSwitch). Omit to use defaults, pass `false` to disable
+- `visualizer` is now **opt-in** (default `false`) — pass `visualizer: true` to re-enable
+- `autoRouter: false` now automatically disables `autoLayout` and removes `vue-router` from `autoImport` imports
+- `unplugin-vue-router` replaced by `vue-router/vite` (merged upstream) — requires `vue-router ^5.0.0` as a peer dependency in consuming projects
+- `vue-router` moved from `dependencies` to optional `peerDependencies`
+- Requires Vite `^8.0.3` (previously `^6.x`)
+- `@vitejs/plugin-vue` 5 → 6, `@vitejs/plugin-vue-jsx` 4 → 5
+- `unplugin-auto-import` 19 → 21, `unplugin-icons` 22 → 23, `unplugin-vue-components` 28 → 32
+- `unocss` promoted from beta to stable `66.6.7`
