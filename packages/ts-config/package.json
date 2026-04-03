@@ -1,6 +1,6 @@
 {
   "name": "@xv-shared/ts-config",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Shared TypeScript configuration for XtraVisions projects",
   "author": "XtraVisions",
   "license": "MIT",
