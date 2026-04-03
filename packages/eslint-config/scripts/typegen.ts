@@ -2,10 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
-
-import { builtinRules } from 'eslint/use-at-your-own-risk'
 import fs from 'node:fs/promises'
+
+import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
+import { builtinRules } from 'eslint/use-at-your-own-risk'
 
 import { createCommentsConfig } from '../src/configs/comments'
 import { createFormatterConfig } from '../src/configs/formatter'

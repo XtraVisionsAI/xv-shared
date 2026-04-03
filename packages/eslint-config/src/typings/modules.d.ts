@@ -2,13 +2,11 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-declare module 'eslint-plugin-eslint-comments' {
+declare module '@eslint-community/eslint-plugin-eslint-comments' {
   const plugin: import('eslint').ESLint.Plugin
 
   export default plugin
 }
-
-declare module 'eslint-plugin-markdown'
 
 declare module 'eslint-plugin-unused-imports' {
   const plugin: import('eslint').ESLint.Plugin

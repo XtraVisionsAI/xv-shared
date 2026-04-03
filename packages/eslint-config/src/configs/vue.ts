@@ -4,9 +4,7 @@
 
 import type { OptionsVue, StylisticConfig, TypedFlatConfigItem } from '../types'
 import { GLOB_VUE } from '../globs'
-
 import { interopDefault } from '../shared'
-
 import { createTsRules } from './typescript'
 
 export async function createVueConfig(

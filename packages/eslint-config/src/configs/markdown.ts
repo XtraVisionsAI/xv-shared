@@ -4,7 +4,6 @@
 
 import type { OptionsMarkdown, TypedFlatConfigItem } from '../types'
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs'
-
 import { interopDefault, mergeProcessors, processorPassThrough } from '../shared'
 
 export async function createMarkdownConfig(options: boolean | OptionsMarkdown = {}): Promise<TypedFlatConfigItem[]> {
@@ -12,7 +11,7 @@ export async function createMarkdownConfig(options: boolean | OptionsMarkdown = 
 
   const { componentExts = [], files = [GLOB_MARKDOWN], overrides = {} } = options as OptionsMarkdown
 
-  const markdown = await interopDefault(import('eslint-plugin-markdown'))
+  const markdown = await interopDefault(import('@eslint/markdown'))
 
   return [
     {

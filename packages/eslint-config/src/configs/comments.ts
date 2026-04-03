@@ -7,7 +7,7 @@ import type { TypedFlatConfigItem } from '../types'
 import { interopDefault } from '../shared'
 
 export async function createCommentsConfig(): Promise<TypedFlatConfigItem[]> {
-  const pluginComments = await interopDefault(import('eslint-plugin-eslint-comments'))
+  const pluginComments = await interopDefault(import('@eslint-community/eslint-plugin-eslint-comments'))
 
   return [
     {

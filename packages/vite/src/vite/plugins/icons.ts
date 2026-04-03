@@ -1,7 +1,6 @@
 import type { Options } from 'unplugin-icons/types'
 import type { Plugin } from 'vite'
 import { merge } from 'lodash-es'
-
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import Icons from 'unplugin-icons/vite'
 

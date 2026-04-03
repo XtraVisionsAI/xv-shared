@@ -4,7 +4,6 @@
 
 import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_PACKAGE_JSON, GLOB_TS_CONFIG, GLOB_TS_OTHER_CONFIG } from '../globs'
-
 import { interopDefault } from '../shared'
 
 export async function createJSONConfig(

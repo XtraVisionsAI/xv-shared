@@ -2,11 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
+import type { PrettierRules, StylisticConfig, UserOptions } from './types'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-
-import type { PrettierRules, StylisticConfig, UserOptions } from './types'
 
 const DEFAULT_PRETTIER_RULES: PrettierRules = {
   printWidth: 120,

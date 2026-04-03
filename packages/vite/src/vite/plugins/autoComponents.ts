@@ -2,7 +2,6 @@ import type { ComponentResolver, Options } from 'unplugin-vue-components/types'
 import { merge } from 'lodash-es'
 import IconsResolver from 'unplugin-icons/resolver'
 import { NaiveUiResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
-
 import Components from 'unplugin-vue-components/vite'
 
 // 新增可配置项接口（覆盖 Options 中需要定制的字段）

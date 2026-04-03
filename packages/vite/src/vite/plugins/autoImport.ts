@@ -1,6 +1,5 @@
 import type { Options } from 'unplugin-auto-import/types'
 import { merge } from 'lodash-es'
-
 import AutoImport from 'unplugin-auto-import/vite'
 
 interface AutoImportOptions extends Omit<Options, 'dts'> {

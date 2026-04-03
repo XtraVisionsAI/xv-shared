@@ -2,11 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import process from 'node:process'
-
 import type { OptionsTypeScript, TypedFlatConfigItem } from '../types'
-import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs'
 
+import process from 'node:process'
+import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs'
 import { interopDefault, renamePluginsInRules, toArray } from '../shared'
 
 export async function createTsRules(): Promise<TypedFlatConfigItem['rules']> {

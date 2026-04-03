@@ -9,7 +9,7 @@
     "config"
   ],
   "peerDependencies": {
-    "stylelint": "catalog:"
+    "stylelint": "^17.6.0"
   },
   "dependencies": {
     "@stylistic/stylelint-config": "catalog:",

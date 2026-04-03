@@ -1,6 +1,5 @@
 import type { Options as AutoLayoutOptions } from 'vite-plugin-vue-meta-layouts'
 import { merge } from 'lodash-es'
-
 import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 const defaultOpt = {

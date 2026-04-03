@@ -4,7 +4,6 @@
 
 import type { OptionsPrettier, PrettierParser, PrettierRules, StylisticConfig, TypedFlatConfigItem } from '../types'
 import { GLOB_HTML, GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_MARKDOWN } from '../globs'
-
 import { interopDefault } from '../shared'
 
 const parserPlain = {

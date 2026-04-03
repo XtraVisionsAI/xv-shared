@@ -2,11 +2,10 @@
  * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
  */
 
-import globals from 'globals'
-
 import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
-import { GLOB_SRC, GLOB_SRC_EXT, GLOB_TESTS } from '../globs'
 
+import globals from 'globals'
+import { GLOB_SRC, GLOB_SRC_EXT, GLOB_TESTS } from '../globs'
 import { interopDefault } from '../shared'
 
 export async function createJavascriptConfig(options: OptionsOverrides = {}): Promise<TypedFlatConfigItem[]> {

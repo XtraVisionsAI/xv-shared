@@ -3,19 +3,19 @@
  */
 
 import type { Plugin } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { visualizer } from 'rollup-plugin-visualizer'
-import topLevelAwait from 'vite-plugin-top-level-await'
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import type { AutoComponentsOptions } from './autoComponents'
 import type { AutoImportOptions } from './autoImport'
-
 import type { AutoLayoutOptions } from './autoLayout'
 import type { AutoRouterOptions } from './autoRouter'
 import type { CssOptions } from './css'
 import type { HtmlOptions } from './html'
 import type { IconOptions } from './icons'
+
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { visualizer } from 'rollup-plugin-visualizer'
+import topLevelAwait from 'vite-plugin-top-level-await'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import { configAutoComponentsPlugin } from './autoComponents'
 import { configAutoImportPlugin } from './autoImport'

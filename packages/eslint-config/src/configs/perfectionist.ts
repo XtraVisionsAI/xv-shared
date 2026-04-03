@@ -21,13 +21,14 @@ export async function createPerfectionistConfig(): Promise<TypedFlatConfigItem[]
           'error',
           {
             groups: [
-              'type',
-              ['builtin', 'external'],
-              'internal-type',
-              'internal',
-              ['parent-type', 'sibling-type', 'index-type'],
-              ['parent', 'sibling', 'index'],
-              'object',
+              'type-import',
+              ['type-internal', 'type-parent', 'type-sibling', 'type-index'],
+              'value-builtin',
+              'value-external',
+              'value-internal',
+              ['value-parent', 'value-sibling', 'value-index'],
+              'side-effect',
+              'ts-equals-import',
               'unknown'
             ],
             newlinesBetween: 'ignore',

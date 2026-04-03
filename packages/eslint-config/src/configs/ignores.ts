@@ -4,7 +4,6 @@
 
 import type { TypedFlatConfigItem } from '../types'
 import { GLOB_EXCLUDES } from '../globs'
-
 import { interopDefault } from '../shared'
 
 export async function createIgnoresConfig(
