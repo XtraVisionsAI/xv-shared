@@ -89,17 +89,25 @@ export default defineConfig(
 pnpm add -D @xv-shared/vite
 ```
 
+`createVitePlugins` 是异步函数，需配合 `async/await` 使用：
+
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
-export default defineConfig(({ mode }) => ({
-  plugins: createVitePlugins(
+export default defineConfig(async ({ mode }) => ({
+  plugins: await createVitePlugins(
     {
-      // 所有选项均为可选，省略则使用默认值
+      // 所有选项均接受 false | true | Options 三态
+      // 省略 = 使用默认值启用
+      // false = 禁用
+      // true = 使用默认配置启用
+      // 对象 = 自定义配置启用
+
       autoImport: {
-        // unplugin-auto-import：默认自动导入 vue/vue-router/pinia/@vueuse/core
+        // unplugin-auto-import：默认自动导入 vue/pinia/@vueuse/core
+        // 启用 autoRouter 时自动添加 vue-router
         dts: 'types/generated/auto-import.d.ts'
       },
       autoComponents: {
@@ -108,11 +116,12 @@ export default defineConfig(({ mode }) => ({
         dts: 'types/generated/auto-components.d.ts'
       },
       autoRouter: {
-        // unplugin-vue-router：基于文件的路由
+        // vue-router 文件路由（需要消费应用安装 vue-router ^5.0.0）
+        // 设为 false 时：同时禁用 autoLayout，并从 autoImport 中移除 vue-router
         dts: 'types/generated/typed-router.d.ts'
       },
       autoLayout: {
-        // vite-plugin-vue-meta-layouts
+        // vite-plugin-vue-meta-layouts（autoRouter: false 时自动禁用）
         skipTopLevelRouteLayout: true
       },
       html: {
@@ -127,8 +136,8 @@ export default defineConfig(({ mode }) => ({
       },
       css: {
         // unocss/vite：始终包含 transformerDirectives 和 transformerVariantGroup
-        // 如需传入额外的 UnoCSS vite 插件选项可在此配置
-      }
+      },
+      visualizer: true // 按需开启：默认关闭，开启后构建时生成 stats.html
     },
     mode
   )
@@ -148,6 +157,19 @@ export default defineConfig({
     // 自定义主题 token
   }
 })
+```
+
+#### 不使用文件路由
+
+对于手动管理路由的项目：
+
+```ts
+export default defineConfig(async ({ mode }) => ({
+  plugins: await createVitePlugins({
+    autoRouter: false,   // 同时禁用 autoRouter 和 autoLayout
+                         // 并从 autoImport 中移除 vue-router
+  })
+}))
 ```
 
 ### Stylelint 配置
@@ -178,8 +200,10 @@ pnpm add -D @xv-shared/ts-config
 
 ## 环境要求
 
-- Node.js >= 18
+- Node.js >= 20
 - pnpm >= 10
+- ESLint >= 10
+- Stylelint >= 17
 
 ## 许可证
 

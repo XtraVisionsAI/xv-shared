@@ -89,17 +89,23 @@ export default defineConfig(
 pnpm add -D @xv-shared/vite
 ```
 
+`createVitePlugins` is async — wrap it with `async/await`:
+
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
-export default defineConfig(({ mode }) => ({
-  plugins: createVitePlugins(
+export default defineConfig(async ({ mode }) => ({
+  plugins: await createVitePlugins(
     {
-      // All options are optional — omit any section to use defaults
+      // All options accept false | true | Options
+      // Omit a key to use the default (enabled with defaults)
+      // Pass false to disable, true to enable with defaults, or an object to configure
+
       autoImport: {
-        // unplugin-auto-import: default imports vue/vue-router/pinia/@vueuse/core
+        // unplugin-auto-import: default imports vue/pinia/@vueuse/core
+        // vue-router is automatically included when autoRouter is enabled
         dts: 'types/generated/auto-import.d.ts'
       },
       autoComponents: {
@@ -108,11 +114,12 @@ export default defineConfig(({ mode }) => ({
         dts: 'types/generated/auto-components.d.ts'
       },
       autoRouter: {
-        // unplugin-vue-router: file-based routing
+        // vue-router file-based routing (requires vue-router ^5.0.0 as a peer dependency)
+        // when false: autoLayout is also disabled and vue-router is removed from autoImport
         dts: 'types/generated/typed-router.d.ts'
       },
       autoLayout: {
-        // vite-plugin-vue-meta-layouts
+        // vite-plugin-vue-meta-layouts (automatically disabled when autoRouter: false)
         skipTopLevelRouteLayout: true
       },
       html: {
@@ -127,8 +134,8 @@ export default defineConfig(({ mode }) => ({
       },
       css: {
         // unocss/vite: transformerDirectives and transformerVariantGroup are always included
-        // pass additional UnoCSS vite plugin options here if needed
-      }
+      },
+      visualizer: true // opt-in: disabled by default, generates stats.html on build
     },
     mode
   )
@@ -148,6 +155,19 @@ export default defineConfig({
     // your theme tokens
   }
 })
+```
+
+#### Without file-based routing
+
+For projects that manage routing manually:
+
+```ts
+export default defineConfig(async ({ mode }) => ({
+  plugins: await createVitePlugins({
+    autoRouter: false,   // disables autoRouter + autoLayout
+                         // and removes vue-router from autoImport
+  })
+}))
 ```
 
 ### Stylelint Config
@@ -178,8 +198,10 @@ pnpm add -D @xv-shared/ts-config
 
 ## Requirements
 
-- Node.js >= 18
+- Node.js >= 20
 - pnpm >= 10
+- ESLint >= 10
+- Stylelint >= 17
 
 ## License
 
