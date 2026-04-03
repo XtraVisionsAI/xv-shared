@@ -1,5 +1,11 @@
 # @xv-shared/vite
 
+## 2.0.1
+
+### Patch Changes
+
+- 18febb2: Remove vite-plugin-top-level-await — vite 8 and modern browsers support TLA natively.
+
 ## 2.0.0
 
 ### Major Changes
