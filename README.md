@@ -164,8 +164,8 @@ For projects that manage routing manually:
 ```ts
 export default defineConfig(async ({ mode }) => ({
   plugins: await createVitePlugins({
-    autoRouter: false,   // disables autoRouter + autoLayout
-                         // and removes vue-router from autoImport
+    autoRouter: false // disables autoRouter + autoLayout
+    // and removes vue-router from autoImport
   })
 }))
 ```

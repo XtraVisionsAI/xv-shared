@@ -166,8 +166,8 @@ export default defineConfig({
 ```ts
 export default defineConfig(async ({ mode }) => ({
   plugins: await createVitePlugins({
-    autoRouter: false,   // 同时禁用 autoRouter 和 autoLayout
-                         // 并从 autoImport 中移除 vue-router
+    autoRouter: false // 同时禁用 autoRouter 和 autoLayout
+    // 并从 autoImport 中移除 vue-router
   })
 }))
 ```
