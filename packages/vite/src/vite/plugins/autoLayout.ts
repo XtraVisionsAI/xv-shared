@@ -1,13 +1,18 @@
+/*
+ * Copyright (c) 2020-2025 XtraVisions, All rights reserved.
+ */
+
 import type { Options as AutoLayoutOptions } from 'vite-plugin-vue-meta-layouts'
+
 import { merge } from 'lodash-es'
-import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 
 const defaultOpt = {
   skipTopLevelRouteLayout: true,
   excludes: ['**/components/**/*.vue']
 }
 
-function configAutoLayoutPlugin(opt?: AutoLayoutOptions) {
+async function configAutoLayoutPlugin(opt?: AutoLayoutOptions) {
+  const { default: MetaLayouts } = await import('vite-plugin-vue-meta-layouts')
   return MetaLayouts(merge(defaultOpt, opt))
 }
 
