@@ -89,15 +89,15 @@ export default defineConfig(
 pnpm add -D @xv-shared/vite
 ```
 
-`createVitePlugins` is async — wrap it with `async/await`:
+`createVitePlugins` is synchronous — use it directly in `defineConfig`:
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
-export default defineConfig(async ({ mode }) => ({
-  plugins: await createVitePlugins(
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins(
     {
       // All options accept false | true | Options
       // Omit a key to use the default (enabled with defaults)
@@ -162,8 +162,8 @@ export default defineConfig({
 For projects that manage routing manually:
 
 ```ts
-export default defineConfig(async ({ mode }) => ({
-  plugins: await createVitePlugins({
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins({
     autoRouter: false // disables autoRouter + autoLayout
     // and removes vue-router from autoImport
   })

@@ -3,7 +3,7 @@
  */
 
 import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer'
-import type { Plugin } from 'vite'
+import type { Plugin, PluginOption } from 'vite'
 import type { AutoComponentsOptions } from './autoComponents'
 import type { AutoImportOptions } from './autoImport'
 import type { AutoLayoutOptions } from './autoLayout'
@@ -69,8 +69,8 @@ function buildAutoImportOpt(
   return { ...base, imports: filtered }
 }
 
-export async function createVitePlugins(opt: PluginOptions = {}, _mode?: string): Promise<Plugin[]> {
-  const vitePlugins: Plugin[] = []
+export function createVitePlugins(opt: PluginOptions = {}, _mode?: string): PluginOption[] {
+  const vitePlugins: PluginOption[] = []
   const routerEnabled = isEnabled(opt.autoRouter)
 
   if (isEnabled(opt.vue)) vitePlugins.push(vue(getOptions(opt.vue)))
@@ -86,11 +86,11 @@ export async function createVitePlugins(opt: PluginOptions = {}, _mode?: string)
   }
 
   if (routerEnabled) {
-    vitePlugins.push(await configAutoRouterPlugin(getOptions(opt.autoRouter)))
+    vitePlugins.push(configAutoRouterPlugin(getOptions(opt.autoRouter)))
   }
 
   if (routerEnabled && isEnabled(opt.autoLayout)) {
-    vitePlugins.push((await configAutoLayoutPlugin(getOptions(opt.autoLayout))) as unknown as Plugin)
+    vitePlugins.push(configAutoLayoutPlugin(getOptions(opt.autoLayout)) as unknown as Promise<Plugin>)
   }
 
   if (isEnabled(opt.html)) vitePlugins.push(...configHtmlPlugin(getOptions(opt.html)))

@@ -89,15 +89,15 @@ export default defineConfig(
 pnpm add -D @xv-shared/vite
 ```
 
-`createVitePlugins` 是异步函数，需配合 `async/await` 使用：
+`createVitePlugins` 是同步函数，直接在 `defineConfig` 中使用：
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import { createVitePlugins } from '@xv-shared/vite'
 
-export default defineConfig(async ({ mode }) => ({
-  plugins: await createVitePlugins(
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins(
     {
       // 所有选项均接受 false | true | Options 三态
       // 省略 = 使用默认值启用
@@ -164,8 +164,8 @@ export default defineConfig({
 对于手动管理路由的项目：
 
 ```ts
-export default defineConfig(async ({ mode }) => ({
-  plugins: await createVitePlugins({
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins({
     autoRouter: false // 同时禁用 autoRouter 和 autoLayout
     // 并从 autoImport 中移除 vue-router
   })
