@@ -1,7 +1,7 @@
 {
   "name": "@xv-shared/vite",
   "type": "module",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Shared Vite configuration and plugins for XtraVisions frontend projects",
   "author": "XtraVisions",
   "license": "MIT",

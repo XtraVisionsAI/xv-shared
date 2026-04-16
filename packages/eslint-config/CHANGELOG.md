@@ -1,5 +1,11 @@
 # @xv-shared/eslint-config
 
+## 2.0.1
+
+### Patch Changes
+
+- d3b031c: docs: add README for each package
+
 ## 2.0.0
 
 ### Major Changes
