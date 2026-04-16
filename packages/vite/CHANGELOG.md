@@ -1,5 +1,11 @@
 # @xv-shared/vite
 
+## 2.1.1
+
+### Patch Changes
+
+- d3b031c: docs: add README for each package
+
 ## 2.1.0
 
 ### Minor Changes
