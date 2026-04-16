@@ -2,20 +2,79 @@
 
 **English** | [中文文档](./README.zh-CN.md)
 
-Shared frontend tooling configurations for [XtraVisions](https://github.com/XtraVisionsAI) projects.
+Shared frontend infrastructure for [XtraVisions](https://github.com/XtraVisionsAI) projects.
 
-[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
+[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/core](https://img.shields.io/npm/v/@xv-shared/core?label=%40xv-shared%2Fcore)](https://www.npmjs.com/package/@xv-shared/core) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
 
 ## Packages
 
 | Package | Version | Description |
 | --- | --- | --- |
+| [`@xv-shared/core`](./packages/core) | [![npm](https://img.shields.io/npm/v/@xv-shared/core)](https://www.npmjs.com/package/@xv-shared/core) | Vue 3 runtime utilities, hooks, directives, HTTP client, and components |
 | [`@xv-shared/eslint-config`](./packages/eslint-config) | [![npm](https://img.shields.io/npm/v/@xv-shared/eslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) | Opinionated ESLint flat config for Vue 3 projects |
 | [`@xv-shared/vite`](./packages/vite) | [![npm](https://img.shields.io/npm/v/@xv-shared/vite)](https://www.npmjs.com/package/@xv-shared/vite) | Shared Vite configuration and plugins |
 | [`@xv-shared/stylelint-config`](./packages/stylelint-config) | [![npm](https://img.shields.io/npm/v/@xv-shared/stylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) | Opinionated Stylelint config for Vue 3 projects |
 | [`@xv-shared/ts-config`](./packages/ts-config) | [![npm](https://img.shields.io/npm/v/@xv-shared/ts-config)](https://www.npmjs.com/package/@xv-shared/ts-config) | Shared TypeScript configuration |
 
 ## Usage
+
+### Core
+
+```bash
+pnpm add @xv-shared/core
+```
+
+Supports subpath imports for optimal tree-shaking:
+
+```ts
+// Utils
+import { isFunction, deepMerge, humanFileSize } from '@xv-shared/core/utils'
+
+// Hooks
+import { useTime, useScroll } from '@xv-shared/core/hooks'
+
+// Directives
+import { clickOutside, copy, debounce } from '@xv-shared/core/directives'
+
+// HTTP Client
+import { createInstance, HttpError } from '@xv-shared/core/request'
+
+// Router
+import { onRouteChange, setRouteEmitter } from '@xv-shared/core/router'
+
+// Components (requires naive-ui)
+import { BasicForm, useForm } from '@xv-shared/core/components/form'
+import { BasicModal, useModal } from '@xv-shared/core/components/modal'
+import { BaseTable, TableAction } from '@xv-shared/core/components/table'
+```
+
+Or import everything from the root:
+
+```ts
+import { isFunction, useTime, createInstance, BasicForm } from '@xv-shared/core'
+```
+
+#### Icon setup (UnoCSS)
+
+Icons in `@xv-shared/core` components use UnoCSS `preset-icons` for compile-time inlining (no CDN required). Configure your consuming project's `unocss.config.ts`:
+
+```ts
+import presetIcons from '@unocss/preset-icons'
+import presetWind4 from '@unocss/preset-wind4'
+import { defineConfig } from 'unocss'
+
+export default defineConfig({
+  presets: [presetWind4(), presetIcons()],
+  content: {
+    pipeline: {
+      include: [
+        /\.(vue|ts|tsx)($|\?)/,
+        /node_modules\/@xv-shared\/core\/dist\/.*\.mjs/ // scan core dist for icon classes
+      ]
+    }
+  }
+})
+```
 
 ### ESLint Config
 

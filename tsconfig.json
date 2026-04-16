@@ -8,7 +8,10 @@
     "packages/eslint-config/src/**/*.ts",
     "packages/eslint-config/scripts/**/*.ts",
     "packages/vite/src/**/*.ts",
-    "packages/vite/tsup.config.ts"
+    "packages/vite/tsup.config.ts",
+    "packages/core/src/**/*.ts",
+    "packages/core/src/**/*.vue",
+    "packages/core/vite.config.ts"
   ],
   "exclude": ["**/node_modules/**", "**/dist/**", "**/typesgen.d.ts"]
 }

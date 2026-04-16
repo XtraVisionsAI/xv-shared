@@ -16,13 +16,19 @@ export default defineConfig(
   },
   {
     // eslint-config source interacts with untyped third-party plugin APIs
-    files: ['packages/eslint-config/src/**/*.ts', 'packages/vite/src/**/*.ts'],
+    files: [
+      'packages/eslint-config/src/**/*.ts',
+      'packages/vite/src/**/*.ts',
+      'packages/core/src/**/*.ts',
+      'packages/core/src/**/*.vue'
+    ],
     rules: {
       'ts/no-unsafe-assignment': 'off',
       'ts/no-unsafe-argument': 'off',
       'ts/no-unsafe-call': 'off',
       'ts/no-unsafe-member-access': 'off',
-      'ts/no-unsafe-return': 'off'
+      'ts/no-unsafe-return': 'off',
+      'ts/no-floating-promises': 'off'
     }
   }
 )

@@ -25,5 +25,8 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "stylelint": "catalog:"
+  },
+  "dependencies": {
+    "vue-draggable-plus": "catalog:"
   }
 }
