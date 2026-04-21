@@ -6,6 +6,7 @@
   import type { Nullable } from '../../types'
   import type { BasicTableProps } from './types/table'
   import { useDebounceFn } from '@vueuse/core'
+  import { NDataTable, NDivider, NDropdown, NIcon, NSwitch, NTooltip } from 'naive-ui'
   import { computed, nextTick, onMounted, onUnmounted, ref, toRaw, unref } from 'vue'
 
   import { getViewportOffset } from '../../utils/dom'

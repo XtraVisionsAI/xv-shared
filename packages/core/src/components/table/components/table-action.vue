@@ -5,6 +5,7 @@
 <script lang="ts">
   import type { PropType } from 'vue'
   import type { ActionItem } from '../types/tableAction'
+  import { NButton, NDropdown } from 'naive-ui'
   import { computed, defineComponent, toRaw } from 'vue'
 
   import { isBoolean, isFunction } from '../../../utils/is'
@@ -12,7 +13,7 @@
 
   export default defineComponent({
     name: 'TableAction',
-    components: { SvgIcon },
+    components: { NButton, NDropdown, SvgIcon },
     props: {
       actions: {
         type: Array as PropType<ActionItem[]>,

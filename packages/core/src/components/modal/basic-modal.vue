@@ -3,6 +3,7 @@
 <script lang="ts" setup>
   import type { ModalMethods, ModalProps } from './types/modal'
   import { merge } from 'lodash-es'
+  import { NButton, NModal, NSpace } from 'naive-ui'
   import { computed, getCurrentInstance, nextTick, ref, unref, useAttrs } from 'vue'
 
   import { startDrag } from '../../utils/drag'

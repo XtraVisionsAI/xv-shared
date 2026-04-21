@@ -3,6 +3,8 @@
   -->
 
 <script setup lang="ts">
+  import { NDialogProvider, NLoadingBarProvider, NMessageProvider, NModalProvider, NNotificationProvider } from 'naive-ui'
+
   import AppProviderInject from './app-provider-inject.vue'
 </script>
 

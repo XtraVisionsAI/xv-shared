@@ -4,6 +4,7 @@
 
 <script lang="ts">
   import { cloneDeep } from 'lodash-es'
+  import { NButton, NCheckbox, NCheckboxGroup, NDivider, NPopover, NSpace, NTooltip } from 'naive-ui'
   import { computed, defineComponent, reactive, ref, toRaw, toRefs, unref, watchEffect } from 'vue'
   import Draggable from 'vue-draggable-plus'
 
@@ -18,7 +19,7 @@
 
   export default defineComponent({
     name: 'ColumnSetting',
-    components: { SvgIcon, Draggable },
+    components: { NButton, NCheckbox, NCheckboxGroup, NDivider, NPopover, NSpace, NTooltip, SvgIcon, Draggable },
     props: {
       darkMode: {
         type: Boolean,

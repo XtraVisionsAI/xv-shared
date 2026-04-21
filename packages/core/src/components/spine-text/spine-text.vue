@@ -3,6 +3,7 @@
   -->
 
 <script lang="ts" setup>
+  import { NGradientText } from 'naive-ui'
   import { computed } from 'vue'
 
   const { animationDuration = 2, animationIterationCount = 'infinite' } = defineProps<{
