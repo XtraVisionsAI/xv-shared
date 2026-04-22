@@ -102,9 +102,16 @@ export class HttpClient {
     url: string,
     options: RequestOptions<T, R> = { method: 'GET' }
   ): Promise<T> {
-    const { onComplete, onResponse, onError, onRequest, ...restOptions } = options
+    const { onComplete, onResponse, onError, onRequest, params, ...restOptions } = options
     const mergedOptions = { ...this.options, ...restOptions }
-    const fullUrl = `${this.options.baseURL ?? ''}${url}`
+    let fullUrl = `${this.options.baseURL ?? ''}${url}`
+    if (params) {
+      const entries = Object.entries(params).filter(([, v]) => v !== undefined && v !== null)
+      if (entries.length > 0) {
+        const qs = entries.map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`).join('&')
+        fullUrl += `${fullUrl.includes('?') ? '&' : '?'}${qs}`
+      }
+    }
     const context: MethodContext<R> = { url, ...mergedOptions } as MethodContext<R>
 
     if (context.headers === undefined) context.headers = {}

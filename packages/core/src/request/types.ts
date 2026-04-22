@@ -75,6 +75,7 @@ export interface RequestOptions<T = any, R extends ResponseType = ResponseType>
   signal?: AbortSignal
   headers?: Record<string, any>
   data?: RequestBody
+  params?: Record<string, unknown>
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
   ignoreAuth?: boolean
 }
