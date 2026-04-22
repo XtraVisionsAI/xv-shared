@@ -29,6 +29,17 @@ pnpm add -D @xv-shared/stylelint-config
 }
 ```
 
+Stylelint does not scan files by default — you must pass a glob. Add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"src/**/*.{css,scss,vue}\" --fix"
+  }
+}
+```
+
 ## What's included
 
 | Extends / Plugin | Purpose |

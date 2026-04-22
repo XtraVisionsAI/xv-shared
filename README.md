@@ -6,6 +6,68 @@ Shared frontend infrastructure for [XtraVisions](https://github.com/XtraVisionsA
 
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/core](https://img.shields.io/npm/v/@xv-shared/core?label=%40xv-shared%2Fcore)](https://www.npmjs.com/package/@xv-shared/core) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
 
+## Quick Start
+
+For a typical Vue 3 project, install all packages at once:
+
+```bash
+# Runtime dependency
+pnpm add @xv-shared/core
+
+# Dev dependencies
+pnpm add -D @xv-shared/eslint-config @xv-shared/vite @xv-shared/stylelint-config @xv-shared/ts-config
+```
+
+Then create the config files:
+
+```js
+// eslint.config.js
+import defineConfig from '@xv-shared/eslint-config'
+
+export default defineConfig()
+```
+
+```json
+// .stylelintrc.json
+{ "extends": "@xv-shared/stylelint-config" }
+```
+
+```json
+// tsconfig.json
+{
+  "extends": "@xv-shared/ts-config/dev.json",
+  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["src/*"] } },
+  "include": ["src/**/*", "types/**/*"]
+}
+```
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { createVitePlugins } from '@xv-shared/vite'
+
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins({}, mode)
+}))
+```
+
+Add the recommended scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"src/**/*.{css,scss,vue}\" --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
+}
+```
+
 ## Packages
 
 | Package | Version | Description |
@@ -242,16 +304,49 @@ pnpm add -D @xv-shared/stylelint-config
 }
 ```
 
+Stylelint does not scan files by default — you must pass a glob. Add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"src/**/*.{css,scss,vue}\" --fix"
+  }
+}
+```
+
+The config includes CSS, SCSS, and Vue SFC support via `postcss-html` and `postcss-scss`, property ordering (SMACSS), and Prettier integration out of the box.
+
 ### TypeScript Config
 
 ```bash
 pnpm add -D @xv-shared/ts-config
 ```
 
+Three configs are available:
+
+| Config | Use Case | Key Settings |
+| --- | --- | --- |
+| `base.json` | Common base for browser apps | strict, ESNext target, bundler moduleResolution |
+| `dev.json` | Vue app source code (extends base) | JSX preserve, relaxed `noImplicitAny`, composite |
+| `node.json` | Node.js scripts & build tooling (extends base) | noEmit, strict `noImplicitAny`, sourceMap |
+
+Typical multi-config setup:
+
 ```json
-// tsconfig.json
+// tsconfig.json — for src/ source code
 {
-  "extends": "@xv-shared/ts-config/base"
+  "extends": "@xv-shared/ts-config/dev.json",
+  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["src/*"] } },
+  "include": ["src/**/*", "types/**/*"]
+}
+```
+
+```json
+// tsconfig.node.json — for vite.config.ts and other build scripts
+{
+  "extends": "@xv-shared/ts-config/node.json",
+  "include": ["vite.config.ts"]
 }
 ```
 

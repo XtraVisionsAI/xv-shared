@@ -22,17 +22,22 @@ pnpm add -D @xv-shared/ts-config
 
 ## Usage
 
+Typical multi-config setup for a Vue project:
+
 ```json
-// tsconfig.json (frontend project)
+// tsconfig.json — for src/ source code
 {
-  "extends": "@xv-shared/ts-config/dev"
+  "extends": "@xv-shared/ts-config/dev",
+  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["src/*"] } },
+  "include": ["src/**/*", "types/**/*"]
 }
 ```
 
 ```json
-// tsconfig.json (Node.js tooling)
+// tsconfig.node.json — for vite.config.ts and other build scripts
 {
-  "extends": "@xv-shared/ts-config/node"
+  "extends": "@xv-shared/ts-config/node",
+  "include": ["vite.config.ts"]
 }
 ```
 

@@ -6,6 +6,68 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![@xv-shared/core](https://img.shields.io/npm/v/@xv-shared/core?label=%40xv-shared%2Fcore)](https://www.npmjs.com/package/@xv-shared/core) [![@xv-shared/eslint-config](https://img.shields.io/npm/v/@xv-shared/eslint-config?label=%40xv-shared%2Feslint-config)](https://www.npmjs.com/package/@xv-shared/eslint-config) [![@xv-shared/vite](https://img.shields.io/npm/v/@xv-shared/vite?label=%40xv-shared%2Fvite)](https://www.npmjs.com/package/@xv-shared/vite) [![@xv-shared/stylelint-config](https://img.shields.io/npm/v/@xv-shared/stylelint-config?label=%40xv-shared%2Fstylelint-config)](https://www.npmjs.com/package/@xv-shared/stylelint-config) [![@xv-shared/ts-config](https://img.shields.io/npm/v/@xv-shared/ts-config?label=%40xv-shared%2Fts-config)](https://www.npmjs.com/package/@xv-shared/ts-config)
 
+## 快速上手
+
+典型 Vue 3 项目，一次性安装所有包：
+
+```bash
+# 运行时依赖
+pnpm add @xv-shared/core
+
+# 开发依赖
+pnpm add -D @xv-shared/eslint-config @xv-shared/vite @xv-shared/stylelint-config @xv-shared/ts-config
+```
+
+然后创建配置文件：
+
+```js
+// eslint.config.js
+import defineConfig from '@xv-shared/eslint-config'
+
+export default defineConfig()
+```
+
+```json
+// .stylelintrc.json
+{ "extends": "@xv-shared/stylelint-config" }
+```
+
+```json
+// tsconfig.json
+{
+  "extends": "@xv-shared/ts-config/dev.json",
+  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["src/*"] } },
+  "include": ["src/**/*", "types/**/*"]
+}
+```
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { createVitePlugins } from '@xv-shared/vite'
+
+export default defineConfig(({ mode }) => ({
+  plugins: createVitePlugins({}, mode)
+}))
+```
+
+在 `package.json` 中添加推荐的 scripts：
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"src/**/*.{css,scss,vue}\" --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
+}
+```
+
 ## 包列表
 
 | 包名 | 版本 | 说明 |
@@ -244,16 +306,49 @@ pnpm add -D @xv-shared/stylelint-config
 }
 ```
 
+Stylelint 不会自动扫描文件，需要通过 glob 指定检查范围。在 `package.json` 中添加以下 scripts：
+
+```json
+{
+  "scripts": {
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "lint:style:fix": "stylelint \"src/**/*.{css,scss,vue}\" --fix"
+  }
+}
+```
+
+该配置内置了 CSS、SCSS 和 Vue SFC 支持（通过 `postcss-html` 和 `postcss-scss`）、属性排序（SMACSS）以及 Prettier 集成。
+
 ### TypeScript 配置
 
 ```bash
 pnpm add -D @xv-shared/ts-config
 ```
 
+提供 3 个配置可供选择：
+
+| 配置 | 适用场景 | 要点 |
+| --- | --- | --- |
+| `base.json` | 浏览器应用通用基础 | strict, ESNext target, bundler moduleResolution |
+| `dev.json` | Vue 应用源码（extends base） | JSX preserve, 放宽 `noImplicitAny`, composite |
+| `node.json` | Node.js 脚本/构建工具配置（extends base） | noEmit, 严格 `noImplicitAny`, sourceMap |
+
+典型多配置用法：
+
 ```json
-// tsconfig.json
+// tsconfig.json — 用于 src/ 源码
 {
-  "extends": "@xv-shared/ts-config/base"
+  "extends": "@xv-shared/ts-config/dev.json",
+  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["src/*"] } },
+  "include": ["src/**/*", "types/**/*"]
+}
+```
+
+```json
+// tsconfig.node.json — 用于 vite.config.ts 等构建脚本
+{
+  "extends": "@xv-shared/ts-config/node.json",
+  "include": ["vite.config.ts"]
 }
 ```
 
