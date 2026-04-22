@@ -1,5 +1,11 @@
 # @xv-shared/core
 
+## 0.3.0
+
+### Minor Changes
+
+- 0bd46b6: Add `params` support to HttpClient for query string serialization. `RequestOptions` now accepts a `params` field that is automatically serialized to query string, filtering out null/undefined values.
+
 ## 0.2.0
 
 ### Minor Changes

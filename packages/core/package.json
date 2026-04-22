@@ -1,7 +1,7 @@
 {
   "name": "@xv-shared/core",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Vue 3 runtime utilities, hooks, directives, HTTP client, and components for XtraVisions frontend projects",
   "author": "XtraVisions",
   "license": "MIT",
