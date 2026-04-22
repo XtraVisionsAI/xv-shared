@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        'index': resolve(__dirname, 'src/index.ts'),
+        index: resolve(__dirname, 'src/index.ts'),
         'utils/index': resolve(__dirname, 'src/utils/index.ts'),
         'hooks/index': resolve(__dirname, 'src/hooks/index.ts'),
         'directives/index': resolve(__dirname, 'src/directives/index.ts'),
@@ -25,17 +25,17 @@ export default defineConfig({
         'components/captcha/index': resolve(__dirname, 'src/components/captcha/index.ts'),
         'components/loading/index': resolve(__dirname, 'src/components/loading/index.ts'),
         'components/spine-text/index': resolve(__dirname, 'src/components/spine-text/index.ts'),
-        'components/primitive-slot/index': resolve(__dirname, 'src/components/primitive-slot/index.ts'),
+        'components/primitive-slot/index': resolve(__dirname, 'src/components/primitive-slot/index.ts')
       },
-      formats: ['es'],
+      formats: ['es']
     },
     rollupOptions: {
       external: ['vue', 'vue-router', 'naive-ui', '@vueuse/core', 'lodash-es', 'vue-draggable-plus'],
       output: {
         preserveModules: true,
         preserveModulesRoot: 'src',
-        entryFileNames: '[name].mjs',
-      },
-    },
+        entryFileNames: '[name].mjs'
+      }
+    }
   }
 })

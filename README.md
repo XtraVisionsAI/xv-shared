@@ -325,11 +325,11 @@ pnpm add -D @xv-shared/ts-config
 
 Three configs are available:
 
-| Config | Use Case | Key Settings |
-| --- | --- | --- |
-| `base.json` | Common base for browser apps | strict, ESNext target, bundler moduleResolution |
-| `dev.json` | Vue app source code (extends base) | JSX preserve, relaxed `noImplicitAny`, composite |
-| `node.json` | Node.js scripts & build tooling (extends base) | noEmit, strict `noImplicitAny`, sourceMap |
+| Config      | Use Case                                       | Key Settings                                     |
+| ----------- | ---------------------------------------------- | ------------------------------------------------ |
+| `base.json` | Common base for browser apps                   | strict, ESNext target, bundler moduleResolution  |
+| `dev.json`  | Vue app source code (extends base)             | JSX preserve, relaxed `noImplicitAny`, composite |
+| `node.json` | Node.js scripts & build tooling (extends base) | noEmit, strict `noImplicitAny`, sourceMap        |
 
 Typical multi-config setup:
 

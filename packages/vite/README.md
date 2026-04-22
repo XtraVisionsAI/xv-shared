@@ -99,9 +99,7 @@ import { useEnv, createProxy } from '@xv-shared/vite'
 const env = useEnv(import.meta.env)
 
 // Dev server proxy configuration
-const proxy = createProxy([
-  ['/api', 'http://localhost:3000']
-])
+const proxy = createProxy([['/api', 'http://localhost:3000']])
 ```
 
 ## License

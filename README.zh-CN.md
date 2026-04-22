@@ -327,11 +327,11 @@ pnpm add -D @xv-shared/ts-config
 
 提供 3 个配置可供选择：
 
-| 配置 | 适用场景 | 要点 |
-| --- | --- | --- |
-| `base.json` | 浏览器应用通用基础 | strict, ESNext target, bundler moduleResolution |
-| `dev.json` | Vue 应用源码（extends base） | JSX preserve, 放宽 `noImplicitAny`, composite |
-| `node.json` | Node.js 脚本/构建工具配置（extends base） | noEmit, 严格 `noImplicitAny`, sourceMap |
+| 配置        | 适用场景                                  | 要点                                            |
+| ----------- | ----------------------------------------- | ----------------------------------------------- |
+| `base.json` | 浏览器应用通用基础                        | strict, ESNext target, bundler moduleResolution |
+| `dev.json`  | Vue 应用源码（extends base）              | JSX preserve, 放宽 `noImplicitAny`, composite   |
+| `node.json` | Node.js 脚本/构建工具配置（extends base） | noEmit, 严格 `noImplicitAny`, sourceMap         |
 
 典型多配置用法：
 

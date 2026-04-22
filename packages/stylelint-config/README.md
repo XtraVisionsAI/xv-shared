@@ -42,16 +42,16 @@ Stylelint does not scan files by default — you must pass a glob. Add these scr
 
 ## What's included
 
-| Extends / Plugin | Purpose |
-| --- | --- |
-| `stylelint-config-recommended` | Baseline recommended rules |
-| `stylelint-config-recommended-scss` | SCSS-specific rules |
-| `stylelint-config-recommended-vue` | Vue SFC `<style>` support |
-| `stylelint-config-property-sort-order-smacss` | SMACSS property ordering |
-| `@stylistic/stylelint-config` | Stylistic formatting rules |
-| `stylelint-scss` | SCSS linting |
-| `stylelint-order` | Declaration ordering |
-| `stylelint-prettier` | Prettier integration |
+| Extends / Plugin                              | Purpose                    |
+| --------------------------------------------- | -------------------------- |
+| `stylelint-config-recommended`                | Baseline recommended rules |
+| `stylelint-config-recommended-scss`           | SCSS-specific rules        |
+| `stylelint-config-recommended-vue`            | Vue SFC `<style>` support  |
+| `stylelint-config-property-sort-order-smacss` | SMACSS property ordering   |
+| `@stylistic/stylelint-config`                 | Stylistic formatting rules |
+| `stylelint-scss`                              | SCSS linting               |
+| `stylelint-order`                             | Declaration ordering       |
+| `stylelint-prettier`                          | Prettier integration       |
 
 ## License
 

@@ -7,8 +7,26 @@
   import type { Ref } from 'vue'
   import type { FormActionType, FormProps, FormSchema } from './types/form'
   import { merge } from 'lodash-es'
-  import { NCheckbox, NInput, NInputNumber, NSelect, NSwitch, NTimePicker, NTreeSelect, NUpload } from 'naive-ui' // hidden import
-  import { NButton, NCheckboxGroup, NForm, NFormItem, NGi, NGrid, NRadio, NRadioGroup, NSpace, NTooltip } from 'naive-ui'
+  import {
+    NButton,
+    NCheckbox,
+    NCheckboxGroup,
+    NForm,
+    NFormItem,
+    NGi,
+    NGrid,
+    NInput,
+    NInputNumber,
+    NRadio,
+    NRadioGroup,
+    NSelect,
+    NSpace,
+    NSwitch,
+    NTimePicker,
+    NTooltip,
+    NTreeSelect,
+    NUpload
+  } from 'naive-ui'
   import { computed, defineComponent, onMounted, reactive, ref, unref, watch } from 'vue'
   import { isArray } from '../../utils/is'
   import { SvgIcon } from '../svg-icon'
